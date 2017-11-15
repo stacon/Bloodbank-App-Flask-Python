@@ -21,7 +21,7 @@ class Donor(Base):
     state                   = db.Column('state', db.String(20), nullable=False)
     zip_code                = db.Column('zip_code', db.String(7), nullable=True)
     contact_number          = db.Column('contact_number', db.String(20), nullable=False)
-    milliliters_deposited   = db.Column('milliliters_deposited', db.Integer, nullable=True)
+    milliliters_donated   = db.Column('milliliters_donated', db.Integer, nullable=True)
     milliliters_withdrawn   = db.Column('milliliters_withdrawn', db.Integer, nullable=True)
     soft_deleted            = db.Column('soft_deleted', db.TIMESTAMP(timezone=False), nullable=True)
     transactions            = db.relationship('Transaction', backref='donor', lazy='dynamic')

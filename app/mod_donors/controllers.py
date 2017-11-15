@@ -8,7 +8,7 @@ mod_donors = Blueprint('donors', __name__, url_prefix='/donors')
 
 # class DonorsController:
 #
-#     def show(self):
+#     def index(self):
 #         pass
 #         # return a view of donors
 #
@@ -32,10 +32,15 @@ mod_donors = Blueprint('donors', __name__, url_prefix='/donors')
 #         pass
 #         # attempt to update the donor's data based on his id, returning error or success message
 #
-#     def deposit(self, id, milliliters, bloodtype_id):
+#     def donate(self, id, milliliters, bloodtype_id):
 #         pass
 #         # attemp a blood deposit transaction for the given donor
 #
 #     def withdraw(self, id, milliliters, bloodtype_id):
 #         pass
 #         # attemp a blood withdraw transaction for the given donor
+#
+#     def transaction_history(self, id, transaction_type = False):
+#         pass
+#         # return a list with donors history of transactions
+#         # if transaction type is provided use it as a filter

@@ -17,11 +17,6 @@ mod_transactions = Blueprint('transactions', __name__, url_prefix='/transactions
 #         # return a transaction history (maybe paginated)
 #         # if bloodtype_id is passed as argument fetch transactions of this particular bloodtype database
 #
-#     def donor_history(self, donor_id, transaction_type = False):
-#         pass
-#         # return a list with donors history of transactions
-#         # if transaction type is provided use it as a filter
-#
 #     def delete(self, id):
 #         pass
 #         # soft delete a transaction by rolling the blood to user AND inventory bloodtypes database

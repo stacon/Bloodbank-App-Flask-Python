@@ -21,7 +21,7 @@ mod_bloodtypes = Blueprint('inventory', __name__, url_prefix='/inventory')
 #         pass
 #         # add quantity of milliliters in the database and return message of success of fault
 #
-#     def remove_quantity(self, id, milliliters_to_subtract):
+#     def subtract_quantity(self, id, milliliters_to_subtract):
 #         pass
-#         # remove quantity of milliliters in the database and return message of success of fault
+#         # subtract quantity of milliliters in the database and return message of success of fault
 #
