@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `bloodtypes` (
   `name` char(3) COLLATE utf8mb4_bin NOT NULL,
   `milliliters_available` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Data exporting was unselected.
 -- Dumping structure for table o_bloodbank.donors
@@ -75,7 +75,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(80) COLLATE utf8mb4_bin NOT NULL,
   `priviledges_level` int(3) unsigned NOT NULL DEFAULT '1',
   `soft_deleted` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Data exporting was unselected.

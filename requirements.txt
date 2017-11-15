@@ -3,3 +3,4 @@ click               ==  6.7
 requests            ==  2.18.4
 Flask-login         ==  0.4.0
 Flask-SQLAlchemy    ==  2.3.2
+Flask-wtf           ==  0.14.2
