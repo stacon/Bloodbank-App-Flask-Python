@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template
-from . import models
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-
+db = SQLAlchemy(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def hello_world():
