@@ -1,0 +1,64 @@
+{% extends 'master/layout.html' %}
+{% block title %} Now editing: {% endblock %}
+{% block subtitle %}#id: #name {% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="row">
+
+        <!--Edit Form-->
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Information here</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" lpformnum="1">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="InputUsername">
+                                Username <span class="fa fa-asterisk" style="color:red"></span>
+                            </label>
+                            <input type="text" id="InputUsername" class="form-control" placeholder="Username (required)" required>
+
+
+                            <div class="form-group">
+                                <label for="InputPassword">
+                                    Password <span class="fa fa-asterisk" style="color:red"></span>
+                                </label>
+                                <input type="password" id="InputPassword" class="form-control" placeholder="Password (required)" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="InputLevel">
+                                    Privelege Level <span class="fa fa-asterisk" style="color:red"></span>
+                                </label>
+                                <input type="number" id="InputLevel" class="form-control" placeholder="Level (required)" required>
+                            </div>
+
+
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--/.Edit Form-->
+
+        <!--Messages-->
+        <div class="col-md-6">
+            <div class="alert alert-warning">
+                <strong>Keep in mind</strong> You can't give privilege level higher than yours (#99).
+            </div>
+        </div>
+        <!--/.Messages-->
+    </div>
+</section>
+{% endblock %}

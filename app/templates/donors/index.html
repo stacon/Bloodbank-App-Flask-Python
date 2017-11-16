@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'master/layout.html' %}
+{% block title %}Donors Dashboard{% endblock %}
+{% block content %}
+    <section id="content">
+        <p>&nbsp;</p>
 
-</body>
-</html>
+        <!-- Donors Search -->
+        {% include 'master/partials/donors_search.html' %}
+        <!-- /.Donors Search -->
+
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                      <h3><strong>Register </strong></h3>
+                      <h4>a donor</h4>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-plus"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                      <h3><strong>New Members </strong></h3>
+                      <h4>view recently registered members</h4>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-happy"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <a href="{{ url_for('inventory.index') }}">
+            <div class="small-box bg-red">
+                <div class="inner">
+                      <h3><strong>Bloodtypes </strong></h3>
+                      <h4>overview</h4>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-waterdrop"></i>
+                </div>
+            </div>
+                </a>
+        </div>
+    </section>
+{% endblock %}
