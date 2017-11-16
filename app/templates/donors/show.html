@@ -1,0 +1,96 @@
+{% extends 'master/layout.html' %}
+{% block title %}Donors Dashboard{% endblock %}
+{% block content %}
+    <section id="content">
+        <p>&nbsp;</p>
+
+        <!-- Donors Search -->
+        {% include 'master/partials/donors_search.html' %}
+        <!-- /.Donors Search -->
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Donors</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Gender</th>
+                            <th>Bloodtype</th>
+                            <th>Age</th>
+                            <th>Contact Number</th>
+                            <th>Full Adress</th>
+                            <th>Actions</th>
+                        </tr>
+
+                        <tr>
+                            <td>183</td>
+                            <td>Jina Doe</td>
+                            <td>x-<span class="fa fa-male" style="color:blue"></span></td>
+                            <td><strong style="color:red">A+</strong></td>
+                            <td>24</td>
+                            <td>210 92 16 977</td>
+                            <td>Adress 33, Athens, Attica 11743</td>
+                            <td>
+                                <button class="btn btn-xs btn-primary">View</button>
+                                <button class="btn btn-xs btn-warning">Edit</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>183</td>
+                            <td>John Doe</td>
+                            <td><span class="fa fa-male" style="color:blue"></span></td>
+                            <td><strong style="color:red">B+</strong></td>
+                            <td>24</td>
+                            <td>210 92 16 977</td>
+                            <td>Adress 33, Athens, Attica 11743</td>
+                            <td>
+                                <button class="btn btn-xs btn-primary">View</button>
+                                <button class="btn btn-xs btn-warning">Edit</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>183</td>
+                            <td>Jane Doe</td>
+                            <td><span class="fa fa-female" style="color:magenta"></span></td>
+                            <td><strong style="color:red">0+</strong></td>
+                            <td>24</td>
+                            <td>210 92 16 977</td>
+                            <td>Adress 33, Athens, Attica 11743</td>
+                            <td>
+                                <button class="btn btn-xs btn-primary">View</button>
+                                <button class="btn btn-xs btn-warning">Edit</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>183</td>
+                            <td>George Doe</td>
+                            <td>x-<span class="fa fa-female" style="color:magenta"></span></td>
+                            <td><strong style="color:red">A-</strong></td>
+                            <td>24</td>
+                            <td>210 92 16 977</td>
+                            <td>Adress 33, Athens, Attica 11743</td>
+                            <td>
+                                <button class="btn btn-xs btn-primary">View</button>
+                                <button class="btn btn-xs btn-warning">Edit</button>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </section>
+{% endblock %}

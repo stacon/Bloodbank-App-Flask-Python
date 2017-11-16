@@ -1,0 +1,17 @@
+{% include 'master/partials/header.html' %}
+{% include 'master/partials/navbar.html' %}
+{% include 'master/partials/sidebar.html' %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {% block title %}{% endblock %}
+            <small>{% block subtitle %}{% endblock %}</small>
+        </h1>
+    </section>
+
+    <!-- Main content -->
+    {% block content %}
+    {% endblock %}
+    {% include 'master/partials/footer.html' %}

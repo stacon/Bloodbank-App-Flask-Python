@@ -1,0 +1,67 @@
+</div>
+<!-- /.row (main row) -->
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- ./wrapper -->
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 0.2.0
+    </div>
+    <strong>Copyright &copy; 2017 <a href="https://github.com/stacon">Constantinos Stathis</a>
+        <div class="fa fa-github"></div>
+        <a href="https://github.com/stacon/Bloodbank-App-Flask-Python">
+            Bloodbank App Flask Application</a></a> </strong>
+</footer>
+<!-- jQuery 3 -->
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<!-- Sparkline -->
+<script src="{{ url_for('static', filename='js/jquery.sparkline.min.js') }}"></script>
+<!-- jvectormap -->
+<script src="{{ url_for('static', filename='js/jquery-jvectormap-1.2.2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ url_for('static', filename='js/jquery.knob.min.js') }}"></script>
+<!-- daterangepicker -->
+<script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/daterangepicker.js') }}"></script>
+<!-- datemasks -->
+<script src="{{ url_for('static', filename='js/jquery.inputmask.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.inputmask.date.extensions.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.inputmask.extensions.js') }}"></script>
+<!-- datepicker -->
+<script src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{{ url_for('static', filename='js/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<!-- Slimscroll -->
+<script src="{{ url_for('static', filename='js/jquery.slimscroll.min.js') }}"></script>
+<!-- FastClick -->
+<script src="{{ url_for('static', filename='js/fastclick.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='js/adminlte.min.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ url_for('static', filename='js/demo.js') }}"></script>
+
+<script>
+    $(function () {
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy',
+            orientation: 'bottom'
+        })
+
+    })
+</script>
+</body>
+</html>

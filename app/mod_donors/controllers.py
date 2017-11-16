@@ -4,13 +4,26 @@ from app.mod_donors.models import Donor
 
 mod_donors = Blueprint('donors', __name__, url_prefix='/donors')
 
-# @mod_donors.route('/login/', methods=['GET', 'POST'])
+@mod_donors.route('/')
+def index():
+    return render_template('donors/index.html')
 
+@mod_donors.route('/show')
+def show():
+    return render_template('donors/show.html')
+
+@mod_donors.route('/view')
+def view():
+    return render_template('donors/view.html')
+
+@mod_donors.route('/register')
+def register():
+    return render_template('donors/register.html')
+
+@mod_donors.route('/edit')
+def edit():
+    return render_template('donors/edit.html')
 # class DonorsController:
-#
-#     def index(self):
-#         pass
-#         # return a view of donors
 #
 #     def view(self,id):
 #         pass

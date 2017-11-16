@@ -1,6 +1,6 @@
 {% extends 'master/layout.html' %}
-{% block title %}Inventory{% endblock %}
-{% block subtitle %}remaining quantity and recent transactions{% endblock %}
+{% block title %}Dashboard{% endblock %}
+{% block subtitle %}General Info{% endblock %}
 {% block content %}
     <section class="content">
         <!-- Small boxes (Stat box) -->
@@ -128,7 +128,7 @@
         </div>
         <!-- /.row -->
 
-        <!-- second-section -->
+        <!-- second section -->
         <div class="row">
             <!-- Recent Donations -->
             <div class="col-md-6">
@@ -143,71 +143,88 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Donor</th>
-                                <th>Date</th>
-                                <th>Time</th>
+                                <th>Type</th>
                                 <th style="width: 40px">Quantity</th>
                             </tr>
                             <tr>
                                 <td>1.</td>
                                 <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
+                                <td>
+                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
+                                </td>
                                 <td><span class="badge bg-green">850 ml</span></td>
                             </tr>
                             <tr>
-                                <td>1.</td>
+                                <td>2.</td>
+                                <td>Markos Seferlis</td>
+                                <td>
+                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
+                                </td>
+                                <td><span class="badge bg-red">450 ml</span></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
                                 <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
+                                <td>
+                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
+                                </td>
                                 <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Markos Seferlis</td>
+                                <td>
+                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
+                                </td>
+                                <td><span class="badge bg-red">450 ml</span></td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
                                 <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
+                                <td>
+                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
+                                </td>
                                 <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
+                            </tr>
+                            <tr>
+                                <td>6.</td>
+                                <td>Markos Seferlis</td>
+                                <td>
+                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
+                                </td>
+                                <td><span class="badge bg-red">450 ml</span></td>
+                            </tr>
+                            <tr>
+                                <td>7.</td>
                                 <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
+                                <td>
+                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
+                                </td>
                                 <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
+                            </tr>
+                            <tr>
+                                <td>8.</td>
+                                <td>Markos Seferlis</td>
+                                <td>
+                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
+                                </td>
+                                <td><span class="badge bg-red">450 ml</span></td>
+                            </tr>
+                            <tr>
+                                <td>9.</td>
                                 <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
+                                <td>
+                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
+                                </td>
                                 <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
+                            </tr>
+                            <tr>
+                                <td>10.</td>
+                                <td>Markos Seferlis</td>
+                                <td>
+                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
+                                </td>
+                                <td><span class="badge bg-red">450 ml</span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -216,11 +233,11 @@
                 </div>
             </div>
             <!-- /.Recent Donations -->
-            <!-- Recent Withdrawals -->
+            <!-- New Donors -->
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Recent withdrawals</h3>
+                        <h3 class="box-title">New Donors</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -228,90 +245,111 @@
                             <tbody>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Donor</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th style="width: 40px">Quantity</th>
+                                <th>Name</th>
+                                <th style="width: 50px">Age</th>
+                                <th style="width: 50px">BT</th>
+                                <th>Registered on</th>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
                             <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
+                                <td><a href="#">1.</a></td>
+                                <td><a href="#">Marios Zoitas</a></td>
+                                <td>22</td>
+                                <td><span class="badge bg-red">B+</span></td>
+                                <td>
+                                    Thusday 15/12/2017
+                                </td>
                             </tr>
+
                             </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->
                 </div>
             </div>
-            <!-- /.Recent Withdrawals -->
+            <!-- /.New Donors -->
         </div>
-        <!-- /.second-section -->
+        <!-- /.second_section -->
 
     </section>
 {% endblock %}

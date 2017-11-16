@@ -1,11 +1,24 @@
 from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
-from app import db
-
+import re
 from app.mod_bloodtypes.models import Bloodtype
+from app import db
 
 mod_bloodtypes = Blueprint('inventory', __name__, url_prefix='/inventory')
 
-# @mod_bloodtypes.route('/', methods=['GET', 'POST'])
+@mod_bloodtypes.route('/')
+def index():
+    return render_template('bloodtypes/index.html')
+
+@mod_bloodtypes.route('/<name>')
+def view(name): # name should be passed as an argument
+    if valid(name):
+        bloodtype = Bloodtype.query.filter_by(name=name).first()
+        return render_template('bloodtypes/view.html', bloodtype=bloodtype)
+    else:
+        return render_template('master/406.html'), 406
+
+def valid(name):
+    return re.match(r'^[AaBb0][+-]$', name)
 
 # class BloodtypesController:
 #

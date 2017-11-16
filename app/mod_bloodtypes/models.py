@@ -14,11 +14,11 @@ class Bloodtype(Base):
     name                    = db.Column('name', db.String(3), nullable=False, unique=True)
     milliliters_available   = db.Column('milliliters_available',db.Integer, nullable=False)
     transactions            = db.relationship('Transaction', backref='bloodtype', lazy='dynamic')
-    donors                  = db.relationship('Donors', backref='bloodtype', lazy='dynamic')
+    donors                  = db.relationship('Donor', backref='bloodtype', lazy='dynamic')
 
-    def __init__(self, name, milliliters_available = 0):
+    def __init__(self, name, milliliters_available=0):
         self.name = name
         self.milliliters_available = milliliters_available
 
     def __repr__(self):
-        return '<Bloodtype>' % (self.name)
+        return '<Bloodtype %r>' % (self.name)
