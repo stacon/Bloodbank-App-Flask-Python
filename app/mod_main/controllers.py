@@ -9,11 +9,3 @@ mod_main = Blueprint('main', __name__)
 @mod_main.route('/')
 def index():
     return render_template('main/dashboard.html')
-   # if user_logged_in:
-   #     redirect('/dashboard', 302)
-   # else:
-   #     redirect('/auth/login', 302)
-
-# @mod_main.route('/dashboard')
-# def dashboard():
-#     return render_template('')

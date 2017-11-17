@@ -1,28 +1,36 @@
 from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
 from app import db
 from app.mod_donors.models import Donor
+from flask_login import login_required
 
 mod_donors = Blueprint('donors', __name__, url_prefix='/donors')
 
 @mod_donors.route('/')
+@login_required
 def index():
     return render_template('donors/index.html')
 
 @mod_donors.route('/show')
+@login_required
 def show():
     return render_template('donors/show.html')
 
 @mod_donors.route('/view')
+@login_required
 def view():
     return render_template('donors/view.html')
 
 @mod_donors.route('/register')
+@login_required
 def register():
     return render_template('donors/register.html')
 
 @mod_donors.route('/edit')
+@login_required
 def edit():
     return render_template('donors/edit.html')
+
+
 # class DonorsController:
 #
 #     def view(self,id):

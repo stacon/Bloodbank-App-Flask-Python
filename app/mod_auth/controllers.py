@@ -1,47 +1,85 @@
 from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
-from werkzeug.security import check_password_hash, generate_password_hash
-from app import db
-from app.mod_auth.forms import LoginForm
+from app.mod_auth.forms import LoginForm, RegistrationForm
 from app.mod_auth.models import User
+from app import db, login_manager
+from flask_login import login_user,logout_user, login_required, current_user
+from sqlalchemy import exc
+from bcrypt import hashpw,checkpw
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
-
-@mod_auth.route('/', methods=['GET', 'POST'])
+@mod_auth.route('/users/', methods=['GET' ,'POST'])
+@login_required
 def index():
-    if request.method == 'GET':
-        return render_template('auth/index.html')
-    else:
-        pass
+    users = User.query.order_by(User.privileges_level).all()
+    return render_template("auth/index.html", users=users)
 
+@mod_auth.route('/register/', methods=['GET' ,'POST'])
+@login_required
+def register():
+    if not request.form:
+        form = RegistrationForm()
+    form = RegistrationForm(request.form)
+
+    if form.validate_on_submit():
+        new_user = User(
+            username=form.username.data,
+            password=form.password.data,
+            privileges_level=form.privilege_level.data
+        )
+        db.session.add(new_user)
+        try:
+            db.session.commit()
+        except exc.IntegrityError:
+            flash(u'Username {} already exists'.format(form.username.data), 'error')
+            return render_template("auth/register.html", form=form)
+        flash(u'User {} created successfully'.format(form.username.data), 'success')
+        return redirect(url_for('auth.index'))
+    return render_template("auth/register.html", form=form)
 
 @mod_auth.route('/edit/')
+@login_required
 def edit():
     # user = User.query.filter_by(id=id).first()
     return render_template('auth/edit.html')
 
 
-@mod_auth.route('/login/', methods=['GET', 'POST'])
-def login():
-    # If sign in form is submitted
+@mod_auth.route('/signin/', methods=['GET', 'POST'])
+def signin():
     form = LoginForm(request.form)
-
-    # Verify the sign in form
-    if form.validate():
-
+    if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
+        if not user:
+            flash('Username not found', 'error')
+        elif form.password.data != user.password:
+            flash('Invalid password!', 'error')
+        else:
+            login_user(user)
+            flash('You have successfully logged in', 'success')
+            return redirect(url_for('main.index'))
 
-        if user and check_password_hash(user.password, form.password.data):
-            session['user_id'] = user.id
+        # if user:
+        #     login_user(user)
+        #     flash(u'Welcome {}, you have successfully logged in'.format(form.username.data), 'success')
+        #     return redirect(url_for("main.index"))
 
-            flash('Welcome %s' % user.name)
+    return render_template("auth/signin.html", form=form)
 
-            return redirect(url_for('mod_auth.home'))
+@mod_auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have successfully logged out', 'success')
+    return redirect(url_for('auth.signin'))
 
-        flash('Wrong username or password', 'error-message')
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=user_id).first()
 
-    return render_template("auth/login.html", form=form)
-
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    flash('You need to be logged in for this view', 'error')
+    return redirect(url_for('auth.signin'))
 
     # class UsersController:
     #

@@ -1,0 +1,12 @@
+{% include 'auth/partials/loginHeader.html' %}
+{% from "auth/partials/renderFields.html" import render_field %}
+
+<div class="col-md-12">
+        <a class="btn btn-primary" href="{{ url_for('seeders.bloodtypes') }}">Seed Bloodtypes</a>
+        <a class="btn btn-primary" href="{{ url_for('seeders.users') }}">Seed Users</a>
+        <a class="btn btn-primary" href="{{ url_for('seeders.donors') }}">Seed Donors</a>
+        <a class="btn btn-primary" href="{{ url_for('seeders.transactions') }}">Seed Transactions</a>
+</div>
+
+{% include 'master/partials/flashMessages.html' %}
+{% include 'auth/partials/loginFooter.html' %}

@@ -1,4 +1,7 @@
 from app import db
+from datetime import date,datetime
+from app.mod_transactions.models import Transaction
+from sqlalchemy import func
 
 class Base(db.Model):
 
@@ -21,10 +24,11 @@ class Donor(Base):
     state                   = db.Column('state', db.String(20), nullable=False)
     zip_code                = db.Column('zip_code', db.String(7), nullable=True)
     contact_number          = db.Column('contact_number', db.String(20), nullable=False)
-    milliliters_donated   = db.Column('milliliters_donated', db.Integer, nullable=True)
+    milliliters_donated     = db.Column('milliliters_donated', db.Integer, nullable=True)
     milliliters_withdrawn   = db.Column('milliliters_withdrawn', db.Integer, nullable=True)
     soft_deleted            = db.Column('soft_deleted', db.TIMESTAMP(timezone=False), nullable=True)
     transactions            = db.relationship('Transaction', backref='donor', lazy='dynamic')
+    age                     = None
 
     def __init__(self, first_name, last_name, gender, dob, bloodtype_id, address, city, state, zip_code, contact_number):
         self.first_name = first_name
@@ -37,6 +41,12 @@ class Donor(Base):
         self.state = state
         self.zip_code = zip_code
         self.contact_number = contact_number
+        self.age = self.calculate_age(dob)
 
     def __repr__(self):
         return '<Name %r %r>' % (self.last_name), (self.first_name)
+
+
+    def calculate_age(self, dob):
+        today = date.today()
+        return today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))

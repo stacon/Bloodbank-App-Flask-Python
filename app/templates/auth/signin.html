@@ -1,0 +1,38 @@
+{% include 'auth/partials/loginHeader.html' %}
+{% from "auth/partials/renderFields.html" import render_field %}
+<!--login-box-->
+<div class="login-box">
+
+    <!--login-logo-->
+    <div class="login-logo"><strong>O- Bloodbank </strong>Sign in</div>
+    <!--/.login-logo-->
+
+    <!--box-body-->
+    <div class="login-box-body">
+
+        <!--login-form-->
+        <form class="form-group" method="POST" action="{{ url_for('auth.signin') }}" accept-charset="UTF-8" role="form">
+
+            {{ form.csrf_token }}
+
+            {{ render_field(form.username) }}
+
+            {{ render_field(form.password) }}
+
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" value="submit">Sign in</button>
+                </div>
+            </div>
+
+        </form>
+        <!--/.login-form-->
+
+    </div>
+    <!--/.box-body-->
+
+</div>
+<!--/.login-box-->
+{% include 'master/partials/flashMessages.html' %}
+{% include 'auth/partials/loginFooter.html' %}
