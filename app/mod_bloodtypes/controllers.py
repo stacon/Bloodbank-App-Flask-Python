@@ -9,7 +9,8 @@ mod_bloodtypes = Blueprint('inventory', __name__, url_prefix='/inventory')
 @mod_bloodtypes.route('/')
 @login_required
 def index():
-    return render_template('bloodtypes/index.html')
+    bloodTypes = Bloodtype.query.order_by(Bloodtype.name).all()
+    return render_template('bloodtypes/index.html', bloodTypes = bloodTypes)
 
 @mod_bloodtypes.route('/<name>')
 @login_required
@@ -20,8 +21,9 @@ def view(name): # name should be passed as an argument
     else:
         return render_template('master/406.html'), 406
 
+# Validating Input to avoid injection
 def valid(name):
-    return re.match(r'^[AaBb0][+-]$', name)
+    return re.match(r'^[AaBb0]{1,2}[+-]$', name)
 
 
 #

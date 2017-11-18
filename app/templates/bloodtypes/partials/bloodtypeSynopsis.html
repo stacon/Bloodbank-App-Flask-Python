@@ -1,0 +1,16 @@
+{% for bloodtype in bloodTypes %}
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+            <div class="inner">
+                <h3>{{ bloodtype.name }}</h3>
+                <h4><strong>{{ bloodtype.milliliters_available }}</strong></h4>
+            </div>
+            <div class="icon">
+                <i class="ion ion-waterdrop"></i>
+            </div>
+            <a href="{{ url_for('inventory.view', name = bloodtype.name) }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+{% endfor %}

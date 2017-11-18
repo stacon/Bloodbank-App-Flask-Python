@@ -11,7 +11,7 @@
                     <div class="inner">
                         <h3>Type: {{ bloodtype.name }}</h3>
                         <h2>Milliliters avaiable: <strong>{{ bloodtype.milliliters_available }}</strong></h2>
-                        <h4>Active Donors: #0</h4>
+                        <h4>Active Donors: {{ bloodtype.donors.count() }}</h4>
                     </div>
                     <div class="icon">
                         <i class="ion ion-waterdrop"></i>
