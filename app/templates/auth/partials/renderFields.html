@@ -13,3 +13,7 @@
         </div>
     {% endif %}
 {% endmacro %}
+
+{% macro render_button(button) %}
+    {{ button(class_='btn btn-primary', **kwargs)|safe }}
+{% endmacro %}

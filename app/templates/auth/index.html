@@ -34,8 +34,8 @@
                                         <td>{{ user.username }}</td>
                                         <td>{{ user.privileges_level }}</td>
                                         <td>
-                                            <button class="btn-sm btn-primary">Edit</button>
-                                            <button class="btn-sm btn-danger">Delete</button>
+                                            <a href="{{ url_for('auth.edit', id = user.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="{{ url_for('auth.delete', id = user.id) }}" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 {% endif %}
@@ -68,8 +68,8 @@
                                         <td style="width: 10px">{{ user.id }}</td>
                                         <td>{{ user.username }}</td>
                                         <td>
-                                            <button class="btn-sm btn-primary">Edit</button>
-                                            <button class="btn-sm btn-danger">Delete</button>
+                                            <a href="{{ url_for('auth.edit', id = user.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="{{ url_for('auth.delete', id = user.id) }}" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 {% endif %}

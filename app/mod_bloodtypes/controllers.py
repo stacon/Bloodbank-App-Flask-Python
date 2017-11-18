@@ -1,8 +1,7 @@
-from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for
 import re
 from app.mod_bloodtypes.models import Bloodtype
 from flask_login import login_required
-from app import db
 
 mod_bloodtypes = Blueprint('inventory', __name__, url_prefix='/inventory')
 
@@ -14,7 +13,8 @@ def index():
 
 @mod_bloodtypes.route('/<name>')
 @login_required
-def view(name): # name should be passed as an argument
+def view(name):
+
     if valid(name):
         bloodtype = Bloodtype.query.filter_by(name=name).first()
         return render_template('bloodtypes/view.html', bloodtype=bloodtype)

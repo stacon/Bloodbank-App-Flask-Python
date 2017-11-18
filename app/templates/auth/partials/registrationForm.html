@@ -1,4 +1,4 @@
-{% from "auth/partials/renderFields.html" import render_field %}
+{% from "auth/partials/renderFields.html" import render_field, render_button %}
 
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -17,14 +17,16 @@
 
             {{ render_field(form.password) }}
 
+            {{ render_field(form.confirm_password) }}
+
             {{ render_field(form.privilege_level) }}
 
 
         </div>
         <!-- /.box-body -->
-
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary btn-block btn-flat" value="submit">Register User</button>
+                        {{ render_button(form.submit) }}
+            {#            <button type="submit" class="btn btn-primary btn-block btn-flat" value="submit">Register User</button>#}
         </div>
 
 

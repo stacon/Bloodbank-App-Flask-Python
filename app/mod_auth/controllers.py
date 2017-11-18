@@ -1,26 +1,24 @@
-from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for
 from app.mod_auth.forms import LoginForm, RegistrationForm, UpdateForm
 from app.mod_auth.models import User
 from app import db, login_manager
 from flask_login import login_user,logout_user, login_required, current_user
-from sqlalchemy import exc
+from werkzeug.security import generate_password_hash
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 
-@mod_auth.route('/users/', methods=['GET' ,'POST'])
+@mod_auth.route('/users')
 @login_required
 def index():
     users = User.query.order_by(User.privileges_level.desc()).all()
     return render_template("auth/index.html", users=users)
 
 
-@mod_auth.route('/register/', methods=['GET' ,'POST'])
+@mod_auth.route('/register', methods=['GET' ,'POST'])
 @login_required
 def register():
-    if not request.form:
-        form = RegistrationForm()
-    form = RegistrationForm(request.form)
+    form = RegistrationForm()
 
     if form.validate_on_submit():
         new_user = User(
@@ -28,45 +26,71 @@ def register():
             password=form.password.data,
             privileges_level=form.privilege_level.data
         )
+
+        # add user to database
         db.session.add(new_user)
-        try:
-            db.session.commit()
-        except exc.IntegrityError:
-            flash(u'Username {} already exists'.format(form.username.data), 'error')
-            return render_template("auth/register.html", form=form)
+        db.session.commit()
         flash(u'User {} created successfully'.format(form.username.data), 'success')
+
+        # redirect to users panel
         return redirect(url_for('auth.index'))
-    return render_template("auth/register.html", form=form)
+
+    # load registration template
+    return render_template("auth/register.html", form=form, title = 'Register new user')
 
 
-@mod_auth.route('/edit/<username_in>', methods=['GET', 'POST'])
+@mod_auth.route('/edit/<id>', methods=['GET', 'POST'])
 @login_required
-def edit(username_in):
-    user = User.query.filter_by(username=username_in).first()
-    form = UpdateForm(request.form)
+def edit(id):
 
-    return render_template('auth/edit.html', user=user, form=form)
-
-
-@mod_auth.route('/signin/', methods=['GET', 'POST'])
-def signin():
-    form = LoginForm(request.form)
+    user = User.query.get_or_404(id)
+    form = UpdateForm(obj=user)
     if form.validate_on_submit():
+        if form.password.data:
+            user.password = generate_password_hash(form.password.data)
+        user.privileges_level = form.privilege_level.data
+        db.session.commit()
+        flash('You have successfully updated user information', 'success')
+
+        # redirect to users page
+        return redirect(url_for('auth.index'))
+
+    form.username.data = user.username
+    form.privilege_level.data = user.privileges_level
+    return render_template("auth/edit.html", form=form, user=user, title="Edit user")
+
+
+@mod_auth.route('/user/delete/<int:id>')
+def delete(id):
+    user = User.query.get_or_404(id)
+    try:
+        db.session.delete(user)
+        db.session.commit()
+    except:
+        flash('Unexpected database error')
+        return redirect(url_for('auth.index'))
+    flash(u'User {} has been successfully deleted!'.format(user.username), 'success')
+    return redirect(url_for('auth.index'))
+
+@mod_auth.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+
+        # try fetching the corresponding user and check password match
         user = User.query.filter_by(username=form.username.data).first()
-        if not user:
-            flash('Username not found', 'error')
-        elif form.password.data != user.password:
-            flash('Invalid password!', 'error')
-        else:
+        if user is not None and user.verify_password(form.password.data):
+
+            # log user in
             login_user(user)
             flash('You have successfully logged in', 'success')
+
+            # redirect after successful login
             return redirect(url_for('main.index'))
+        else:
+            flash('Invalid username or password!', 'error')
 
-        # if user:
-        #     login_user(user)
-        #     flash(u'Welcome {}, you have successfully logged in'.format(form.username.data), 'success')
-        #     return redirect(url_for("main.index"))
-
+    # load sign in template
     return render_template("auth/signin.html", form=form)
 
 @mod_auth.route('/logout')
@@ -74,46 +98,17 @@ def signin():
 def logout():
     logout_user()
     flash('You have successfully logged out', 'success')
-    return redirect(url_for('auth.signin'))
+    return redirect(url_for('auth.login'))
 
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     flash('You need to be logged in for this view', 'error')
-    return redirect(url_for('auth.signin'))
-
+    return redirect(url_for('auth.login'))
 
 
     # class UsersController:
     #
-    #     def show(self):
-    #         pass
-    #         # return a view with applications users info and level
-    #
-    #     def register(self):
-    #         pass
-    #         # retirm a view to register a new application user
-    #
-    #     def create(self, data):
-    #         pass
-    #         # attempt to create a user database entry, return message of error or success
-    #
-    #     def edit(self, id):
-    #         pass
-    #         # return a view to edit a specific user
-    #
-    #     def update(self, id, data):
-    #         pass
-    #         # attempt to update a specific user's data from the database through query and return success or error
-    #
     #     def delete(self, id):
     #         pass
     #         # attempt to soft_delete a user by adding timestamp to soft_deleted field
-    #
-    #     def login(self):
-    #         pass
-    #         # return a view to login
-    #
-    #     def logout(self):
-    #         pass
-    #         # destroy session and redirect to login()
