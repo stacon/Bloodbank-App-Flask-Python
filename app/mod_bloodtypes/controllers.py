@@ -19,7 +19,7 @@ def view(name): # name should be passed as an argument
         bloodtype = Bloodtype.query.filter_by(name=name).first()
         return render_template('bloodtypes/view.html', bloodtype=bloodtype)
     else:
-        return render_template('master/406.html'), 406
+        return redirect(url_for('main.notAllowed'))
 
 # Validating Input to avoid injection
 def valid(name):

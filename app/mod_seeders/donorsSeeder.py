@@ -28,5 +28,6 @@ donor24 = Donor('Pavlos'    , 'Fidis'       , 'M'   , (1972,12,6)    , 4, 'Arxig
 donor25 = Donor('Markos'    , 'Ntais'       , 'M'   , (1971,1,5)     , 5, 'Nikis 10', 'Nikaia', 'Attica', '11743', '2102141579')
 donor26 = Donor('Georgia'   , 'Leka'        , 'F'   , (1970,2,4)     , 4, 'Parou 65', 'Faliro', 'Attica', '11743', '2145632147')
 donor27 = Donor('Alexandros', 'Eleftheris'  , 'M'   , (1969,3,3)     , 4, 'Sirou 1', 'Alimos', 'Attica', '65478', '2145654565')
+donor28 = Donor('Alexandros', 'Patos'       , 'M'   , (1978,3,3)     , 4, 'Sirou 1', 'Alimos', 'Attica', '65478', '2145654565')
 donor29 = Donor('Alexandra' , 'Louka'       , 'F'   , (1968,4,2)     , 5, 'Anafis 65', 'Elliniko', 'Attica', '12345', '2144444444')
 donor30 = Donor('Takis'     , 'Stakis'      , 'M'   , (1967,5,1)     , 4, 'Samoi 2', 'Elliniko', 'Attica', '12345', '2132132132')

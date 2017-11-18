@@ -22,3 +22,7 @@ class Bloodtype(Base):
 
     def __repr__(self):
         return '<Bloodtype %r>' % (self.name)
+
+    @property
+    def liters(self):
+        return str("{0:.2f}".format(self.milliliters_available))

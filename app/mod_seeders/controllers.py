@@ -4,6 +4,7 @@ from app import db
 from app.mod_bloodtypes.models import Bloodtype
 from app.mod_donors.models import Donor
 from app.mod_auth.models import User
+from app.mod_transactions.models import Transaction
 from datetime import date
 
 mod_seeders = Blueprint('seeders', __name__, url_prefix='/seed')
@@ -163,4 +164,48 @@ def donors():
 
 @mod_seeders.route('/transactions')
 def transactions():
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(2,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+    transaction1 = Transaction(1,'D',1)
+
+    try:
+        db.session.add(bloodtype1)
+        db.session.add(bloodtype2)
+        db.session.add(bloodtype3)
+        db.session.add(bloodtype4)
+        db.session.add(bloodtype5)
+        db.session.add(bloodtype6)
+        db.session.add(bloodtype7)
+        db.session.add(bloodtype8)
+        db.session.commit()
+    except exc.IntegrityError:
+        flash('Failed to seed Bloodtypes in database, they probably already exist', 'error')
+        return redirect(url_for('seeders.index'))
+    flash('Bloodtypes seeded', 'success')
     return redirect(url_for('seeders.index'))

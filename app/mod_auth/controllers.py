@@ -1,18 +1,19 @@
 from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
-from app.mod_auth.forms import LoginForm, RegistrationForm
+from app.mod_auth.forms import LoginForm, RegistrationForm, UpdateForm
 from app.mod_auth.models import User
 from app import db, login_manager
 from flask_login import login_user,logout_user, login_required, current_user
 from sqlalchemy import exc
-from bcrypt import hashpw,checkpw
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
+
 
 @mod_auth.route('/users/', methods=['GET' ,'POST'])
 @login_required
 def index():
-    users = User.query.order_by(User.privileges_level).all()
+    users = User.query.order_by(User.privileges_level.desc()).all()
     return render_template("auth/index.html", users=users)
+
 
 @mod_auth.route('/register/', methods=['GET' ,'POST'])
 @login_required
@@ -37,11 +38,14 @@ def register():
         return redirect(url_for('auth.index'))
     return render_template("auth/register.html", form=form)
 
-@mod_auth.route('/edit/')
+
+@mod_auth.route('/edit/<username_in>', methods=['GET', 'POST'])
 @login_required
-def edit():
-    # user = User.query.filter_by(id=id).first()
-    return render_template('auth/edit.html')
+def edit(username_in):
+    user = User.query.filter_by(username=username_in).first()
+    form = UpdateForm(request.form)
+
+    return render_template('auth/edit.html', user=user, form=form)
 
 
 @mod_auth.route('/signin/', methods=['GET', 'POST'])
@@ -72,14 +76,13 @@ def logout():
     flash('You have successfully logged out', 'success')
     return redirect(url_for('auth.signin'))
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.filter_by(id=user_id).first()
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     flash('You need to be logged in for this view', 'error')
     return redirect(url_for('auth.signin'))
+
+
 
     # class UsersController:
     #

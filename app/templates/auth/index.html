@@ -11,7 +11,7 @@
             </div>
 
             <!-- User Lists -->
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <!-- Existing Admins -->
                 <div class="box">
                     <div class="box-header with-border">
@@ -25,7 +25,7 @@
                                 <th style="width: 10px">#</th>
                                 <th>username</th>
                                 <th>Privilege Level</th>
-                                <th>Actions</th>
+                                <th style="width: 150px">Actions</th>
                             </tr>
                             {% for user in users %}
                                 {% if user.privileges_level > 50 %}
@@ -47,7 +47,7 @@
                 </div>
                 <!-- /.Existing Admins -->
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <!-- Existing Users -->
                 <div class="box">
                     <div class="box-header with-border">
@@ -60,15 +60,13 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>username</th>
-                                <th>Privilege Level</th>
-                                <th>Actions</th>
+                                <th style="width: 150px">Actions</th>
                             </tr>
                             {% for user in users %}
                                 {% if user.privileges_level < 50 %}
                                     <tr>
                                         <td style="width: 10px">{{ user.id }}</td>
                                         <td>{{ user.username }}</td>
-                                        <td>{{ user.privileges_level }}</td>
                                         <td>
                                             <button class="btn-sm btn-primary">Edit</button>
                                             <button class="btn-sm btn-danger">Delete</button>

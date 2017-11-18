@@ -10,8 +10,8 @@
                 <div class="small-box bg-red">
                     <div class="inner">
                         <h3>Type: {{ bloodtype.name }}</h3>
-                        <h2>Milliliters avaiable: <strong>{{ bloodtype.milliliters_available }}</strong></h2>
-                        <h4>Active Donors: {{ bloodtype.donors.count() }}</h4>
+                        <h2>Inventory (lt): <strong>{{ bloodtype.liters }}</strong></h2>
+                        <h4>Donors: {{ bloodtype.donors.count() }}</h4>
                     </div>
                     <div class="icon">
                         <i class="ion ion-waterdrop"></i>
