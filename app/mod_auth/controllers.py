@@ -15,7 +15,7 @@ def index():
     return render_template("auth/index.html", users=users)
 
 
-@mod_auth.route('/register', methods=['GET' ,'POST'])
+@mod_auth.route('/users/register', methods=['GET' ,'POST'])
 @login_required
 def register():
     form = RegistrationForm()
@@ -39,7 +39,7 @@ def register():
     return render_template("auth/register.html", form=form, title = 'Register new user')
 
 
-@mod_auth.route('/edit/<id>', methods=['GET', 'POST'])
+@mod_auth.route('/users/edit/<id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
 
@@ -57,10 +57,10 @@ def edit(id):
 
     form.username.data = user.username
     form.privilege_level.data = user.privileges_level
-    return render_template("auth/edit.html", form=form, user=user, title="Edit user")
+    return render_template("auth/edit.html", form=form, user=user, action="Edit", title="Edit user")
 
 
-@mod_auth.route('/user/delete/<int:id>')
+@mod_auth.route('/users/delete/<int:id>')
 def delete(id):
     user = User.query.get_or_404(id)
     try:
@@ -74,6 +74,12 @@ def delete(id):
 
 @mod_auth.route('/login', methods=['GET', 'POST'])
 def login():
+
+    # if the user is logged in redirect to the dashboard
+    if current_user.is_authenticated and current_user.is_active:
+        flash('You are already logged in', 'warning')
+        return redirect(url_for('main.index'))
+
     form = LoginForm()
     if form.validate_on_submit():
 
