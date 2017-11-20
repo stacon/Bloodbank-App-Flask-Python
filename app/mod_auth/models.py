@@ -55,7 +55,9 @@ class User(Base, UserMixin):
 
     @property
     def is_admin(self):
+        """
+        Check if the user has an administrator level
+        """
         if self.privileges_level > 50:
             return True
-        else:
-            return False
+        return False

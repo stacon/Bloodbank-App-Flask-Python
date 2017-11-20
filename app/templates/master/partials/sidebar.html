@@ -3,7 +3,14 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <div class="form-group text-center">
-            <h4 style="color:white;"> Hello, {{ current_user.username }}
+            <h4 style="color:white;"> Hello,
+                {% if current_user.is_admin %}
+                <span style="font-weight: 600; color: #f3e97a">
+                    {% endif %}
+                {{ current_user.username }}
+            {% if current_user.is_admin %}
+                </span>
+                    {% endif %}
             </h4>
         </div>
 
@@ -39,6 +46,8 @@
                 </a>
             </li>
             <li class="header">APPLICATION</li>
+
+            {% if current_user.is_admin %}
             <li class="">
                 <a href="{{ url_for('auth.index') }}">
                     <i class="fa fa-users"></i> <span>Users</span>
@@ -46,6 +55,8 @@
             </span>
                 </a>
             </li>
+            {% endif %}
+
             <li class="">
                 <a href="{{ url_for('auth.logout') }}">
                     <i class="fa fa-sign-out"></i> <span>Logout</span>

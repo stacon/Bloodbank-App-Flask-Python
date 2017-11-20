@@ -11,6 +11,13 @@ mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 @mod_auth.route('/users')
 @login_required
 def index():
+
+    # restrict access for non admins
+    if not current_user.is_admin:
+        flash('You need to have admin access level for this page', 'error')
+        return redirect(url_for('main.index'))
+
+
     users = User.query.order_by(User.privileges_level.desc()).all()
     return render_template("auth/index.html", users=users)
 
@@ -18,6 +25,13 @@ def index():
 @mod_auth.route('/users/register', methods=['GET' ,'POST'])
 @login_required
 def register():
+
+
+    # restrict access for non admins
+    if not current_user.is_admin:
+        flash('You need to have admin access level for this page', 'error')
+        return redirect(url_for('main.index'))
+
     form = RegistrationForm()
 
     if form.validate_on_submit():
@@ -43,6 +57,11 @@ def register():
 @login_required
 def edit(id):
 
+    # restrict access for non admins
+    if not current_user.is_admin:
+        flash('You need to have admin access level for this page', 'error')
+        return redirect(url_for('main.index'))
+
     user = User.query.get_or_404(id)
     form = UpdateForm(obj=user)
     if form.validate_on_submit():
@@ -62,6 +81,12 @@ def edit(id):
 
 @mod_auth.route('/users/delete/<int:id>')
 def delete(id):
+
+    # restrict access for non admins
+    if not current_user.is_admin:
+        flash('You need to have admin access level for this page', 'error')
+        return redirect(url_for('main.index'))
+
     user = User.query.get_or_404(id)
     try:
         db.session.delete(user)
@@ -111,10 +136,3 @@ def logout():
 def unauthorized_callback():
     flash('You need to be logged in for this view', 'error')
     return redirect(url_for('auth.login'))
-
-
-    # class UsersController:
-    #
-    #     def delete(self, id):
-    #         pass
-    #         # attempt to soft_delete a user by adding timestamp to soft_deleted field
