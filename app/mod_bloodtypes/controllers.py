@@ -9,7 +9,7 @@ mod_bloodtypes = Blueprint('inventory', __name__, url_prefix='/inventory')
 @login_required
 def index():
     bloodTypes = Bloodtype.query.order_by(Bloodtype.name).all()
-    return render_template('bloodtypes/index.html', bloodTypes = bloodTypes)
+    return render_template('bloodtypes/index.html', bloodTypes = bloodTypes, title='Inventory')
 
 @mod_bloodtypes.route('/<name>')
 @login_required
@@ -17,7 +17,7 @@ def view(name):
 
     if valid(name):
         bloodtype = Bloodtype.query.filter_by(name=name).first()
-        return render_template('bloodtypes/view.html', bloodtype=bloodtype)
+        return render_template('bloodtypes/view.html', bloodtype=bloodtype, title=u'{} info'.format(bloodtype.name))
     else:
         return redirect(url_for('main.notAllowed'))
 

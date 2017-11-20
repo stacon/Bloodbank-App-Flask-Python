@@ -14,7 +14,7 @@ mod_main = Blueprint('main', __name__)
 def index():
     bloodTypes = Bloodtype.query.order_by(Bloodtype.name).all()
     recent_donors = Donor.query.order_by(Donor.date_created.desc()).limit(10)
-    return render_template('main/dashboard.html', bloodTypes=bloodTypes, recent_donors=recent_donors)
+    return render_template('main/dashboard.html', bloodTypes=bloodTypes, recent_donors=recent_donors, title="Dashboard")
 
 def notAllowed():
-    return render_template('master/406.html')
+    return render_template('master/406.html', title='Error 406')
