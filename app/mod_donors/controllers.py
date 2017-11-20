@@ -8,27 +8,23 @@ mod_donors = Blueprint('donors', __name__, url_prefix='/donors')
 @mod_donors.route('/')
 @login_required
 def index():
-    return render_template('donors/index.html')
+    return render_template('donors/index.html', title='Donors')
 
-@mod_donors.route('/show')
-@login_required
-def show():
-    return render_template('donors/show.html')
 
 @mod_donors.route('/view')
 @login_required
 def view():
-    return render_template('donors/view.html')
+    return render_template('donors/view.html', title="#name's info ")
 
 @mod_donors.route('/register')
 @login_required
 def register():
-    return render_template('donors/register.html')
+    return render_template('donors/register.html',title='Donor Registration')
 
 @mod_donors.route('/edit')
 @login_required
 def edit():
-    return render_template('donors/edit.html')
+    return render_template('donors/edit.html', title='Edit #name')
 
 
 # class DonorsController:

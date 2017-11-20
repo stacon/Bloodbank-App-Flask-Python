@@ -12,7 +12,7 @@ mod_seeders = Blueprint('seeders', __name__, url_prefix='/seed')
 
 @mod_seeders.route('/')
 def index():
-    return render_template('main/seeders.html')
+    return render_template('main/seeders.html', title="Seeders")
 
 @mod_seeders.route('/bloodtypes')
 def bloodtypes():

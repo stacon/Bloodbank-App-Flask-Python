@@ -19,7 +19,7 @@ def index():
 
 
     users = User.query.order_by(User.privileges_level.desc()).all()
-    return render_template("auth/index.html", users=users)
+    return render_template("auth/index.html", users=users, title="Users")
 
 
 @mod_auth.route('/users/register', methods=['GET' ,'POST'])
@@ -50,7 +50,7 @@ def register():
         return redirect(url_for('auth.index'))
 
     # load registration template
-    return render_template("auth/register.html", form=form, title = 'Register new user')
+    return render_template("auth/register.html", form=form, title='User registation')
 
 
 @mod_auth.route('/users/edit/<id>', methods=['GET', 'POST'])
@@ -122,7 +122,7 @@ def login():
             flash('Invalid username or password!', 'error')
 
     # load sign in template
-    return render_template("auth/signin.html", form=form)
+    return render_template("auth/signin.html", form=form, title="Sign in")
 
 @mod_auth.route('/logout')
 @login_required
