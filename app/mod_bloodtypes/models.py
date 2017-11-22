@@ -21,7 +21,7 @@ class Bloodtype(Base):
         self.milliliters_available = milliliters_available
 
     def __repr__(self):
-        return '<Bloodtype %r>' % (self.name)
+        return str(self.name)
 
     @property
     def liters(self):

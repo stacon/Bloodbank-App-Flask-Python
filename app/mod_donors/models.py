@@ -14,6 +14,7 @@ class Base(db.Model):
 
 class Donor(Base):
     __tablename__           = 'donors'
+    insurance_number        = db.Column('insurance_number', db.String(30), nullable=False)
     first_name              = db.Column('first_name', db.String(30), nullable=False )
     last_name               = db.Column('last_name', db.String(30), nullable=False)
     gender                  = db.Column('gender', db.String(3), nullable=False)
@@ -24,12 +25,12 @@ class Donor(Base):
     state                   = db.Column('state', db.String(20), nullable=False)
     zip_code                = db.Column('zip_code', db.String(7), nullable=True)
     contact_number          = db.Column('contact_number', db.String(20), nullable=False)
-    milliliters_donated     = db.Column('milliliters_donated', db.Integer, nullable=True)
-    milliliters_withdrawn   = db.Column('milliliters_withdrawn', db.Integer, nullable=True)
-    soft_deleted            = db.Column('soft_deleted', db.TIMESTAMP(timezone=False), nullable=True)
+    milliliters_donated     = db.Column('milliliters_donated', db.Integer, nullable=True, default=0)
+    milliliters_withdrawn   = db.Column('milliliters_withdrawn', db.Integer, nullable=True, default=0)
     transactions            = db.relationship('Transaction', backref='donor', lazy='dynamic')
 
-    def __init__(self, first_name, last_name, gender, dob, bloodtype_id, address, city, state, zip_code, contact_number):
+    def __init__(self, insurance_number, first_name, last_name, gender, dob, bloodtype_id, address, city, state, zip_code, contact_number):
+        self.insurance_number = insurance_number
         self.first_name = first_name
         self.last_name = last_name
         self.gender = gender
@@ -41,7 +42,8 @@ class Donor(Base):
         self.zip_code = zip_code
         self.contact_number = contact_number
 
+
     @property
     def age(self):
-        return str(int(((date.today() - self.dob).days) / 365 ))
+        return str(int((date.today() - self.dob).days / 365))
 

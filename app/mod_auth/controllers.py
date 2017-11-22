@@ -50,7 +50,7 @@ def register():
         return redirect(url_for('auth.index'))
 
     # load registration template
-    return render_template("auth/register.html", form=form, title='User registation')
+    return render_template("auth/register.html", form=form, title='User registration')
 
 
 @mod_auth.route('/users/edit/<id>', methods=['GET', 'POST'])

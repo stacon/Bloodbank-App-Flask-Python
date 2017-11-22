@@ -5,4 +5,3 @@ Flask-login         ==  0.4.0
 Flask-SQLAlchemy    ==  2.3.2
 Flask-wtf           ==  0.14.2
 wtforms             ==  2.1
-bcrypt              ==  3.1.4

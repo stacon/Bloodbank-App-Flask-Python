@@ -1,68 +1,94 @@
 {% extends 'master/layout.html' %}
+{% from "auth/partials/renderFields.html" import render_field, render_button %}
+
 {% block content %}
     <section class="content">
-    <p>&nbsp;</p>
+
+        <!-- 1st column -->
         <div class="col-md-6">
+
+            <!-- form row -->
             <div class="row">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Registration Form</h3>
-                    </div>
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-12">General Information</div>
-                            <div class="form-group">
-                                <div class="col-sm-6 pad">
-                                    <input type="text" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="col-sm-6 pad">
-                                    <input type="text" class="form-control" placeholder="Last Name">
-                                </div>
-                                <div class="col-sm-4 pad">
-                                    <input type="text" class="form-control" placeholder="Gender">
-                                </div>
-                                <div class="col-sm-4 pad">
-                                    <input type="text" class="form-control" placeholder="Bloodtype">
-                                </div>
-                                <div class="col-sm-4 pad">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right" id="datepicker" placeholder="Birth Date">
+
+                <!-- Registration Form -->
+                <form action="{{ url_for('donors.register') }}" method="POST">
+
+                    {{ form.csrf_token }}
+
+                    <!-- box-body-primary-->
+                    <div class="box box-primary">
+
+                        <!-- Form Header -->
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Registration Form</h3>
+                        </div>
+                        <!--./ Form Header -->
+
+                        <!-- Form body -->
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-md-12">General Information</div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.insurance_number) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.first_name) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.last_name) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.gender) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.bloodtype) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                            {{ render_field(form.dob) }}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">Contact Information</div>
-                            <div class="form-group">
-                                <div class="col-sm-6 pad">
-                                    <input type="text" class="form-control" placeholder="Address">
+                                <div class="col-md-12">Contact Information</div>
+                                <div class="form-group">
+                                    <div class="col-sm-6 pad">
+                                        {{ render_field(form.address) }}
+                                    </div>
+                                    <div class="col-sm-6 pad">
+                                        {{ render_field(form.city) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.state) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.zip_code) }}
+                                    </div>
+                                    <div class="col-sm-4 pad">
+                                        {{ render_field(form.contact_number) }}
+                                    </div>
                                 </div>
-                                <div class="col-sm-6 pad">
-                                    <input type="text" class="form-control" placeholder="City">
-                                </div>
-                                <div class="col-sm-4 pad">
-                                    <input type="text" class="form-control" placeholder="State">
-                                </div>
-                                <div class="col-sm-4 pad">
-                                    <input type="text" class="form-control" placeholder="Zip Code">
-                                </div>
-                                <div class="col-sm-4 pad">
-                                    <input type="text" class="form-control" placeholder="Contact Number">
+                                <div class="form-group">
+                                    <div class="col-md-4 pad">
+                                        {{ render_button(form.submit) }}
+                                    </div>
+
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-md-4 pad">
-                                    <input type="submit" class="btn btn-block btn-primary">
-                                </div>
-
-                            </div>
                         </div>
+                        <!-- /.Form-body -->
                     </div>
-                    <!-- /.box-body -->
-                </div>
+                    <!-- /.box-body-primary -->
+
+                </form>
+
+                <!--/. Registration Form -->
+
             </div>
+            <!-- /.form row -->
+
         </div>
+        <!--/. 1st column -->
+
     </section>
 {% endblock %}
