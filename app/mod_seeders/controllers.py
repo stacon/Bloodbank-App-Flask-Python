@@ -43,16 +43,16 @@ def bloodtypes():
 
 @mod_seeders.route('/users')
 def users():
-    user1 = User('stacon'   , generate_password_hash('secret'), 100)
-    user2 = User('filgeo'   , generate_password_hash('secret'), 100)
-    user3 = User('lirnik'   , generate_password_hash('secret'), 85)
-    user4 = User('tasmas'   , generate_password_hash('secret'), 1)
-    user5 = User('liknik'   , generate_password_hash('secret'), 1)
-    user6 = User('biktik'   , generate_password_hash('secret'), 1)
-    user7 = User('sikpap'   , generate_password_hash('secret'), 1)
-    user8 = User('paptap'   , generate_password_hash('secret'), 1)
-    user9 = User('lamtam'   , generate_password_hash('secret'), 1)
-    user10 = User('aimfak'  , generate_password_hash('secret'), 1)
+    user1 = User('stacon'   , 'secret', 100)
+    user2 = User('filgeo'   , 'secret', 100)
+    user3 = User('lirnik'   , 'secret', 85)
+    user4 = User('tasmas'   , 'secret', 1)
+    user5 = User('liknik'   , 'secret', 1)
+    user6 = User('biktik'   , 'secret', 1)
+    user7 = User('sikpap'   , 'secret', 1)
+    user8 = User('paptap'   , 'secret', 1)
+    user9 = User('lamtam'   , 'secret', 1)
+    user10 = User('aimfak'  , 'secret', 1)
 
     try:
         db.session.add(user1)

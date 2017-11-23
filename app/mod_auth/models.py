@@ -20,7 +20,7 @@ class User(Base, UserMixin):
 
     def __init__(self, username, password, privileges_level):
         self.username = username
-        self.password_hash = password
+        self.password = password
         self.privileges_level = privileges_level
 
     def __repr__(self):
@@ -33,7 +33,7 @@ class User(Base, UserMixin):
     @property
     def password(self):
         """
-        Prevent pasword from being accessed
+        Prevent password from being accessed
         """
         raise AttributeError('password_hash is not a readable attribute.')
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
-from app.mod_auth.forms import LoginForm, RegistrationForm, UpdateForm
+from app.mod_auth.forms import LoginForm, RegistrationForm, UpdateForm, ChangePasswordForm
 from app.mod_auth.models import User
 from app import db, login_manager
 from flask_login import login_user,logout_user, login_required, current_user
@@ -17,7 +17,6 @@ def index():
         flash('You need to have admin access level for this page', 'error')
         return redirect(url_for('main.index'))
 
-
     users = User.query.order_by(User.privileges_level.desc()).all()
     return render_template("auth/index.html", users=users, title="Users")
 
@@ -25,7 +24,6 @@ def index():
 @mod_auth.route('/users/register', methods=['GET' ,'POST'])
 @login_required
 def register():
-
 
     # restrict access for non admins
     if not current_user.is_admin:
@@ -65,8 +63,6 @@ def edit(id):
     user = User.query.get_or_404(id)
     form = UpdateForm(obj=user)
     if form.validate_on_submit():
-        if form.password.data:
-            user.password = generate_password_hash(form.password.data)
         user.privileges_level = form.privilege_level.data
         db.session.commit()
         flash('You have successfully updated user information', 'success')
@@ -78,6 +74,32 @@ def edit(id):
     form.privilege_level.data = user.privileges_level
     return render_template("auth/edit.html", form=form, user=user, action="Edit", title=u"Edit #{} {}".format(user.id, user.username))
 
+@mod_auth.route('/users/edit/password-change/<int:id>', methods=['GET', 'POST'])
+@login_required
+def password_change(id):
+
+    # restrict access for non admins
+    if not current_user.is_admin:
+        flash('You need to have admin access level for this page', 'error')
+        return redirect(url_for('main.index'))
+
+    user = User.query.get_or_404(id)
+    form = ChangePasswordForm(obj=user)
+    if form.validate_on_submit():
+        if form.password.data:
+            user.password = form.password.data
+        db.session.commit()
+        flash(u"You have successfully changed {}'s password".format(user.username), 'success')
+
+        # redirect to users page
+        return redirect(url_for('auth.index'))
+
+    return render_template(
+        "auth/password-change.html",
+        form=form,
+        user=user,
+        action="Edit",
+        title=u"Change password for {}".format(user.username))
 
 @mod_auth.route('/users/delete/<int:id>')
 def delete(id):
