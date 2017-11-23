@@ -26,86 +26,24 @@
                                 <th>Type</th>
                                 <th style="width: 40px">Quantity</th>
                             </tr>
-                            <tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>
-                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
-                                </td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>
-                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
-                                </td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>George Kokkos</td>
-                                <td>
-                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
-                                </td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Markos Seferlis</td>
-                                <td>
-                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
-                                </td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>5.</td>
-                                <td>George Kokkos</td>
-                                <td>
-                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
-                                </td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>6.</td>
-                                <td>Markos Seferlis</td>
-                                <td>
-                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
-                                </td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>7.</td>
-                                <td>George Kokkos</td>
-                                <td>
-                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
-                                </td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>8.</td>
-                                <td>Markos Seferlis</td>
-                                <td>
-                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
-                                </td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>9.</td>
-                                <td>George Kokkos</td>
-                                <td>
-                                    <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
-                                </td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>10.</td>
-                                <td>Markos Seferlis</td>
-                                <td>
-                                    <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
-                                </td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
+                            {% for transaction in recent_transactions %}
+                                <tr>
+                                    <td>{{ transaction.id }}</td>
+                                    <td> <a href="{{ url_for('donors.view', id=transaction.donor.id) }}"> {{ transaction.donor.last_name }} {{ transaction.donor.first_name }} </a></td>
+                                    <td>
+                                        {% if transaction.type == 'D' %}
+                                            <div class="fa fa-arrow-up" style="color:limegreen"></div> Donation
+                                        {% elif transaction.type == 'W' %}
+                                            <div class="fa fa-arrow-down" style="color:red"></div> Withdrawal
+                                         {% endif %}
+                                    </td>
+
+                                    <td><span class="badge {% if transaction.type == 'D' %}bg-green{% elif transaction.type == 'W' %}bg-red{% endif %}">
+                                    {{ transaction.milliliters }}
+                                    </span></td>
+
+                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -113,6 +51,7 @@
                 </div>
             </div>
             <!-- /.Recent Donations -->
+
             <!-- New Donors -->
             <div class="col-md-6">
                 <div class="box">
@@ -131,15 +70,17 @@
                                 <th>Registered on</th>
                             </tr>
                             {% for donor in recent_donors %}
-                            <tr>
-                                <td>{{ donor.id }}</td>
-                                <td><a href="#">{{ donor.last_name }} {{ donor.first_name }}</a></td>
-                                <td>{{ donor.age }}</td>
-                                <td><span class="badge bg-red">{{ donor.bloodtype.name }}</span></td>
-                                <td>
-                                    {{ donor.date_created.strftime('%d-%m-%Y') }}
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ donor.id }}</td>
+                                    <td>
+                                        <a href="{{ url_for('donors.view', id=donor.id) }}">{{ donor.last_name }} {{ donor.first_name }}</a>
+                                    </td>
+                                    <td>{{ donor.age }}</td>
+                                    <td><span class="badge bg-red">{{ donor.bloodtype.name }}</span></td>
+                                    <td>
+                                        {{ donor.date_created.strftime('%d-%m-%Y') }}
+                                    </td>
+                                </tr>
                             {% endfor %}
                             </tbody>
                         </table>

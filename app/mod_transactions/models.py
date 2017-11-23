@@ -12,14 +12,14 @@ class Base(db.Model):
 class Transaction(Base):
     __tablename__ = 'transactions'
     donor_id                = db.Column('donor_id', db.Integer, db.ForeignKey('donors.id'), nullable=False)
-    transaction_type        = db.Column('transaction_type', db.CHAR(1), nullable=False)
+    type                    = db.Column('transaction_type', db.CHAR(1), nullable=False)
     bloodtype_id            = db.Column('bloodtype_id', db.Integer, db.ForeignKey('bloodtypes.id'), nullable=True)
     milliliters             = db.Column('milliliters', db.Integer, nullable=False)
     soft_deleted            = db.Column('soft_deleted', db.TIMESTAMP(timezone=False), nullable=True)
 
-    def __init__(self, donor_id, transaction_type, bloodtype_id, milliliters):
+    def __init__(self, donor_id, type, bloodtype_id, milliliters):
         self.donor_id = donor_id
-        self.transaction_type = transaction_type
+        self.type = type
         self.bloodtype_id = bloodtype_id
         self.milliliters = milliliters
 

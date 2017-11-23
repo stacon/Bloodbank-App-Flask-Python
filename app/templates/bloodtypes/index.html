@@ -27,68 +27,20 @@
                                 <th>Time</th>
                                 <th style="width: 40px">Quantity</th>
                             </tr>
-                            <tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr><tr>
-                                <td>1.</td>
-                                <td>George Kokkos</td>
-                                <td>12/12/2017</td>
-                                <td>13:10</td>
-                                <td><span class="badge bg-green">850 ml</span></td>
-                            </tr>
+                            {% for donation in recent_donations %}
+                                <tr>
+                                    <td>{{ donation.id }}</td>
+                                    <td>
+                                        <a href="{{ url_for('donors.view', id=donation.donor.id) }}">
+                                            {{ donation.donor.first_name }} {{ donation.donor.last_name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ donation.date_created.strftime('%d/%m/%Y') }}</td>
+                                    <td>{{ donation.date_created.strftime('%H:%M') }}</td>
+                                    <td><span class="badge bg-green">{{ donation.milliliters }}</span></td>
+                                </tr>
+                            {% endfor %}
+
                             </tbody>
                         </table>
                     </div>
@@ -112,77 +64,19 @@
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th style="width: 40px">Quantity</th>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Markos Seferlis</td>
-                                <td>12/12/2017</td>
-                                <td>15:40</td>
-                                <td><span class="badge bg-red">450 ml</span></td>
-                            </tr>
+                            {% for withdrawal in recent_withdrawals %}
+                                <tr>
+                                    <td>{{ withdrawal.id }}</td>
+                                    <td>
+                                        <a href="{{ url_for('donors.view', id=withdrawal.donor.id) }}">
+                                            {{ withdrawal.donor.first_name }} {{ withdrawal.donor.last_name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ withdrawal.date_created.strftime('%d/%m/%Y') }}</td>
+                                    <td>{{ withdrawal.date_created.strftime('%H:%M') }}</td>
+                                    <td><span class="badge bg-red">{{ withdrawal.milliliters }}</span></td>
+                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

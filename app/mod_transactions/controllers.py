@@ -15,7 +15,7 @@ def donate(id):
     if  form.validate_on_submit():
         new_transaction = Transaction(
             donor_id=donor.id,
-            transaction_type='D',
+            type='D',
             bloodtype_id=donor.bloodtype_id,
             milliliters=form.milliliters.data
         )
@@ -49,7 +49,7 @@ def withdraw(id):
     if form.validate_on_submit():
         new_transaction = Transaction(
             donor_id=donor.id,
-            transaction_type='W',
+            type='W',
             bloodtype_id=form.bloodtype.data,
             milliliters=form.milliliters.data
         )
@@ -62,7 +62,7 @@ def withdraw(id):
         donor.withdraw(form.milliliters.data)
 
         # decreate bloodtypes inventory value
-        bloodtype = Bloodtype.query.filter_by(id=donor.bloodtype_id).first()
+        bloodtype = Bloodtype.query.filter_by(id=form.bloodtype.data).first()
         bloodtype.decrease(form.milliliters.data)
 
         flash(u'You have successfully donated {} milliliters'.format(form.milliliters.data))

@@ -68,14 +68,16 @@
                             <table class="table table-striped">
                                 <tbody>
                                 <tr>
-                                    <th>Date</th>
+                                    <th style="width: 80%">Date</th>
                                     <th>Mililliters</th>
 
                                 </tr>
+                                {% for donation in donations %}
                                 <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
+                                <td>{{ donation.date_created.strftime('%A %d. %B %Y') }}</td>
+                                <td>{{ donation.milliliters }}</td>
                                 </tr>
+                                {% endfor %}
 
                                 </tbody>
                             </table>
@@ -93,47 +95,16 @@
                             <table class="table table-striped">
                                 <tbody>
                                 <tr>
-                                    <th>Date</th>
+                                    <th style="width: 80%">Date</th>
                                     <th>Mililliters</th>
-                                    <th>Blood Type Received</th>
 
                                 </tr>
+                                {% for withdrawal in withdrawals %}
                                 <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-                                    <td>B+</td>
-
+                                <td>{{ withdrawal.date_created.strftime('%A %d. %B %Y') }}</td>
+                                <td>{{ withdrawal.milliliters }}</td>
                                 </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-                                    <td>B+</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-                                    <td>B+</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-                                    <td>B+</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-                                    <td>B+</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-                                    <td>B+</td>
-
-                                </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>

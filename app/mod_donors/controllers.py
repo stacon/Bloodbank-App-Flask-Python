@@ -1,26 +1,42 @@
-from flask import Blueprint, render_template, flash, redirect, url_for,request
-from app.mod_donors.forms import RegistrationForm, UpdateForm
+from flask import Blueprint, render_template, flash, redirect, url_for
+from app.mod_donors.forms import RegistrationForm, UpdateForm, SearchForm
 from app.mod_donors.models import Donor
-from app.mod_transactions.models import Transaction
+from app.mod_donors.models import Transaction
 from flask_login import login_required
 from app import db
+from sqlalchemy import or_
 
 mod_donors = Blueprint('donors', __name__, url_prefix='/donors')
 
-@mod_donors.route('/')
+@mod_donors.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    return render_template('donors/index.html', title='Donors')
+    form = SearchForm()
+
+    if form.validate_on_submit():
+            donors = db.session.query(Donor).filter(or_(
+                Donor.last_name.contains(form.input.data),
+                Donor.contact_number.contains(form.input.data),
+                Donor.insurance_number.contains(form.input.data)
+            )
+        )
+    else:
+        donors = None
+    return render_template('donors/index.html', form=form, donors=donors, title='Donors')
 
 
 @mod_donors.route('/view/<int:id>', methods=['GET', 'POST'])
 @login_required
 def view(id):
     donor = Donor.query.get_or_404(id)
+    donations = Transaction.query.filter_by(donor_id=donor.id, type='D').limit(10).all()
+    withdrawals = Transaction.query.filter_by(donor_id=donor.id, type='W').limit(10).all()
 
     return render_template(
         'donors/view.html',
         donor=donor,
+        donations=donations,
+        withdrawals=withdrawals,
         title=u"{}'s information".format(donor.last_name)
     )
 

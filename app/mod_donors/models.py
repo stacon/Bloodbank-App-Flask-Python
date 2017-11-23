@@ -14,7 +14,7 @@ class Base(db.Model):
 
 class Donor(Base):
     __tablename__           = 'donors'
-    insurance_number        = db.Column('insurance_number', db.String(30), nullable=False)
+    insurance_number        = db.Column('insurance_number', db.String(30), nullable=False, unique=True)
     first_name              = db.Column('first_name', db.String(30), nullable=False)
     last_name               = db.Column('last_name', db.String(30), nullable=False)
     gender                  = db.Column('gender', db.String(3), nullable=False)

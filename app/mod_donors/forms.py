@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, SelectField, DateField, HiddenField, IntegerField
+from wtforms import SubmitField, StringField, SelectField, DateField
 from wtforms.validators import InputRequired, ValidationError
 from app.mod_donors.models import Donor
 
@@ -185,3 +185,12 @@ class UpdateForm(FlaskForm):
     )
 
     submit = SubmitField('Update')
+
+class SearchForm(FlaskForm):
+
+    input = StringField(
+        'First name',
+        render_kw=({'placeholder':'Search by Last Name, contact  number, insurance number'})
+    )
+
+    submit = SubmitField('Search')
