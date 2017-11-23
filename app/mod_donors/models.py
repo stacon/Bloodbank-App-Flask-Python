@@ -15,7 +15,7 @@ class Base(db.Model):
 class Donor(Base):
     __tablename__           = 'donors'
     insurance_number        = db.Column('insurance_number', db.String(30), nullable=False)
-    first_name              = db.Column('first_name', db.String(30), nullable=False )
+    first_name              = db.Column('first_name', db.String(30), nullable=False)
     last_name               = db.Column('last_name', db.String(30), nullable=False)
     gender                  = db.Column('gender', db.String(3), nullable=False)
     dob                     = db.Column('dob', db.Date, nullable=False)
@@ -28,6 +28,9 @@ class Donor(Base):
     milliliters_donated     = db.Column('milliliters_donated', db.Integer, nullable=True, default=0)
     milliliters_withdrawn   = db.Column('milliliters_withdrawn', db.Integer, nullable=True, default=0)
     transactions            = db.relationship('Transaction', backref='donor', lazy='dynamic')
+
+    def __repr__(self):
+        return '<First name: {}, Last name: {}>'.format(self.first_name, self.last_name)
 
     def __init__(self, insurance_number, first_name, last_name, gender, dob, bloodtype_id, address, city, state, zip_code, contact_number):
         self.insurance_number = insurance_number

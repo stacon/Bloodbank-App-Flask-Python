@@ -1,0 +1,18 @@
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Donation</h3>
+    </div>
+    <div class="box-body">
+        <form class="form-group" method="POST">
+
+            {{ form.csrf_token }}
+
+            {{ render_field(form.milliliters) }}
+
+            {{ render_button(form.submit) }}
+
+
+        </form>
+    </div>
+    <!-- /.box-body -->
+</div>

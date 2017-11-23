@@ -76,55 +76,55 @@ def users():
 
 @mod_seeders.route('/donors')
 def donors():
-    donor1 = Donor('Petros', 'Lalos', 'M', date(1995, 1, 1), 1, 'Papagou 10', 'Zografou', 'Attica', '11743', '2109216977')
-    donor2 = Donor('Roumpini', 'Meleti', 'F', date(1994, 2, 28), 2, 'Irakleous 20', 'Kalithea', 'Attica', '11723',
+    donor1 = Donor('0000000001', 'Petros', 'Lalos', 'M', date(1995, 1, 1), 1, 'Papagou 10', 'Zografou', 'Attica', '11743', '2109216977')
+    donor2 = Donor('0000000002', 'Roumpini', 'Meleti', 'F', date(1994, 2, 28), 2, 'Irakleous 20', 'Kalithea', 'Attica', '11723',
                    '2109015877')
-    donor3 = Donor('Nina', 'Mparka', 'TXM', date(1993, 3, 27), 3, 'Nikaias 10', 'Koridallos', 'Attica', '15426',
+    donor3 = Donor('0000000003', 'Nina', 'Mparka', 'TXM', date(1993, 3, 27), 3, 'Nikaias 10', 'Koridallos', 'Attica', '15426',
                    '6948556622')
-    donor4 = Donor('Serj', 'Tankian', 'M', date(1992, 4, 26), 4, 'Armenion 101', 'Neos Kosmos', 'Attica', '16898',
+    donor4 = Donor('0000000004', 'Serj', 'Tankian', 'M', date(1992, 4, 26), 4, 'Armenion 101', 'Neos Kosmos', 'Attica', '16898',
                    '6987451236')
-    donor5 = Donor('Emily', 'Fakou', 'F', date(1991, 5, 25), 5, 'Dima 1', 'Kifisia', 'Attica', '16235', '6987454512')
-    donor6 = Donor('Giorgos', 'Cheliotis', 'M', date(1990, 6, 24), 6, 'Daskalou 10', 'Marousi', 'Attica', '11749',
+    donor5 = Donor('0000000005', 'Emily', 'Fakou', 'F', date(1991, 5, 25), 5, 'Dima 1', 'Kifisia', 'Attica', '16235', '6987454512')
+    donor6 = Donor('0000000006', 'Giorgos', 'Cheliotis', 'M', date(1990, 6, 24), 6, 'Daskalou 10', 'Marousi', 'Attica', '11749',
                    '5584771223')
-    donor7 = Donor('Maria', 'Ntika', 'F', date(1989, 7, 23), 7, 'Iroon 10', 'Galatsi', 'Attica', '12345', '69554411223')
-    donor8 = Donor('Niki', 'Lalou', 'F', date(1988, 8, 22), 8, 'Ious 110', 'Chalandri', 'Attica', '65432', '2105474123')
-    donor9 = Donor('Nikos', 'Spiridis', 'TXF', date(1987, 9, 21), 8, 'Athanatou 10', 'Nea Makri', 'Attica', '11743',
+    donor7 = Donor('0000000007', 'Maria', 'Ntika', 'F', date(1989, 7, 23), 7, 'Iroon 10', 'Galatsi', 'Attica', '12345', '69554411223')
+    donor8 = Donor('0000000008', 'Niki', 'Lalou', 'F', date(1988, 8, 22), 8, 'Ious 110', 'Chalandri', 'Attica', '65432', '2105474123')
+    donor9 = Donor('0000000009', 'Nikos', 'Spiridis', 'TXF', date(1987, 9, 21), 8, 'Athanatou 10', 'Nea Makri', 'Attica', '11743',
                    '2106214525')
-    donor10 = Donor('Markos', 'Plytas', 'M', date(1986, 10, 20), 8, 'Alexandrou 2', 'Loutsa', 'Attica', '11453',
+    donor10 = Donor('0000000010', 'Markos', 'Plytas', 'M', date(1986, 10, 20), 8, 'Alexandrou 2', 'Loutsa', 'Attica', '11453',
                     '21062151477')
-    donor11 = Donor('Koula', 'Papadopoulou', 'F', date(1985, 11, 19), 7, 'Athinas 1', 'Vironas', 'Attica', '12301',
+    donor11 = Donor('0000000011', 'Koula', 'Papadopoulou', 'F', date(1985, 11, 19), 7, 'Athinas 1', 'Vironas', 'Attica', '12301',
                     '2115478965')
-    donor12 = Donor('Kostas', 'Tsakonas', 'M', date(1984, 12, 18), 6, 'Omonoias 13', 'Psichiko', 'Attica', '45678',
+    donor12 = Donor('0000000012', 'Kostas', 'Tsakonas', 'M', date(1984, 12, 18), 6, 'Omonoias 13', 'Psichiko', 'Attica', '45678',
                     '2114563214')
-    donor13 = Donor('Antonis', 'Politanos', 'M', date(1983, 1, 17), 1, 'Patsi 44', 'Elliniko', 'Attica', '65421',
+    donor13 = Donor('0000000013', 'Antonis', 'Politanos', 'M', date(1983, 1, 17), 1, 'Patsi 44', 'Elliniko', 'Attica', '65421',
                     '2136547745')
-    donor14 = Donor('Tasos', 'Ichos', 'M', date(1982, 2, 16), 1, 'Tatsi 13', 'Glyfada', 'Attica', '32145', '21032326512')
-    donor15 = Donor('Pantelis', 'Seisoglou', 'M', date(1981, 3, 15), 1, 'Sikias 14', 'Varkiza', 'Attica', '7896',
+    donor14 = Donor('0000000014', 'Tasos', 'Ichos', 'M', date(1982, 2, 16), 1, 'Tatsi 13', 'Glyfada', 'Attica', '32145', '21032326512')
+    donor15 = Donor('0000000015', 'Pantelis', 'Seisoglou', 'M', date(1981, 3, 15), 1, 'Sikias 14', 'Varkiza', 'Attica', '7896',
                     '21021515123')
-    donor16 = Donor('Kelly', 'Vagkelly', 'TXM', date(1980, 4, 14), 2, 'Aetofolias 15', 'Vouliagmeni', 'Attica', '45632',
+    donor16 = Donor('0000000016', 'Kelly', 'Vagkelly', 'TXM', date(1980, 4, 14), 2, 'Aetofolias 15', 'Vouliagmeni', 'Attica', '45632',
                     '1225153145')
-    donor17 = Donor('Dora', 'Nikolopoulou', 'F', date(1979, 5, 13), 7, 'Eirinis 2', 'Athina', 'Attica', '45678',
+    donor17 = Donor('0000000017', 'Dora', 'Nikolopoulou', 'F', date(1979, 5, 13), 7, 'Eirinis 2', 'Athina', 'Attica', '45678',
                     '1226548321')
-    donor18 = Donor('Amalia', 'Spiropoulou', 'F', date(1978, 6, 12), 8, 'Dilou 2', 'Koliatsou', 'Thessaloniki', '45621',
+    donor18 = Donor('0000000018', 'Amalia', 'Spiropoulou', 'F', date(1978, 6, 12), 8, 'Dilou 2', 'Koliatsou', 'Thessaloniki', '45621',
                     '6958475896')
-    donor19 = Donor('Ntina', 'Stoka', 'TXM', date(1977, 7, 11), 8, 'Arsinois 1', 'Menidi', 'Volos', '45689', '6958478521')
-    donor20 = Donor('Eva', 'Papa', 'F', date(1976, 8, 10), 6, 'Estellas 45', 'Liosia', 'Kriti', '45612', '6936251452')
-    donor21 = Donor('Periklis', 'Bogos', 'M', date(1975, 9, 9), 7, 'Maginas 10', 'Peristeri', 'Attica', '45678',
+    donor19 = Donor('0000000019', 'Ntina', 'Stoka', 'TXM', date(1977, 7, 11), 8, 'Arsinois 1', 'Menidi', 'Volos', '45689', '6958478521')
+    donor20 = Donor('0000000020', 'Eva', 'Papa', 'F', date(1976, 8, 10), 6, 'Estellas 45', 'Liosia', 'Kriti', '45612', '6936251452')
+    donor21 = Donor('0000000021', 'Periklis', 'Bogos', 'M', date(1975, 9, 9), 7, 'Maginas 10', 'Peristeri', 'Attica', '45678',
                     '6936251452')
-    donor22 = Donor('Stratos', 'Tsaknis', 'M', date(1974, 10, 8), 7, 'Aggelon 23', 'Acharnai', 'Attica', '12365',
+    donor22 = Donor('0000000022', 'Stratos', 'Tsaknis', 'M', date(1974, 10, 8), 7, 'Aggelon 23', 'Acharnai', 'Attica', '12365',
                     '2102145236')
-    donor23 = Donor('Stavros', 'Mouros', 'M', date(1973, 11, 7), 5, 'Mousikwn 1', 'Peristeri', 'Attica', '87956',
+    donor23 = Donor('0000000023', 'Stavros', 'Mouros', 'M', date(1973, 11, 7), 5, 'Mousikwn 1', 'Peristeri', 'Attica', '87956',
                     '2113214563')
-    donor24 = Donor('Pavlos', 'Fidis', 'M', date(1972, 12, 6), 4, 'Arxigou 15', 'Peiraias', 'Attica', '45678', '2136545649')
-    donor25 = Donor('Markos', 'Ntais', 'M', date(1971, 1, 5), 5, 'Nikis 10', 'Nikaia', 'Attica', '11743', '2102141579')
-    donor26 = Donor('Georgia', 'Leka', 'F', date(1970, 2, 4), 4, 'Parou 65', 'Faliro', 'Attica', '11743', '2145632147')
-    donor27 = Donor('Alexandros', 'Eleftheris', 'M', date(1969, 3, 3), 4, 'Sirou 1', 'Alimos', 'Attica', '65478',
+    donor24 = Donor('0000000024', 'Pavlos', 'Fidis', 'M', date(1972, 12, 6), 4, 'Arxigou 15', 'Peiraias', 'Attica', '45678', '2136545649')
+    donor25 = Donor('0000000025', 'Markos', 'Ntais', 'M', date(1971, 1, 5), 5, 'Nikis 10', 'Nikaia', 'Attica', '11743', '2102141579')
+    donor26 = Donor('0000000026', 'Georgia', 'Leka', 'F', date(1970, 2, 4), 4, 'Parou 65', 'Faliro', 'Attica', '11743', '2145632147')
+    donor27 = Donor('0000000027', 'Alexandros', 'Eleftheris', 'M', date(1969, 3, 3), 4, 'Sirou 1', 'Alimos', 'Attica', '65478',
                     '2145654565')
-    donor28 = Donor('Alexandra', 'Nika', 'F', date(1961, 5, 2), 5, 'Manafis 65', 'Voula', 'Attica', '12345',
+    donor28 = Donor('0000000028', 'Alexandra', 'Nika', 'F', date(1961, 5, 2), 5, 'Manafis 65', 'Voula', 'Attica', '12345',
                     '2144444444')
-    donor29 = Donor('Alexandra', 'Louka', 'F', date(1968, 4, 2), 5, 'Anafis 65', 'Elliniko', 'Attica', '12345',
+    donor29 = Donor('0000000029', 'Alexandra', 'Louka', 'F', date(1968, 4, 2), 5, 'Anafis 65', 'Elliniko', 'Attica', '12345',
                     '2144444444')
-    donor30 = Donor('Takis', 'Stakis', 'M', date(1967, 5, 1), 4, 'Samoi 2', 'Elliniko', 'Attica', '12345', '2132132132')
+    donor30 = Donor('0000000030', 'Takis', 'Stakis', 'M', date(1967, 5, 1), 4, 'Samoi 2', 'Elliniko', 'Attica', '12345', '2132132132')
     try:
         db.session.add(donor1)
         db.session.add(donor2)

@@ -1,0 +1,27 @@
+{% extends 'master/layout.html' %}
+{% from 'auth/partials/renderFields.html' import render_button, render_field %}
+{% block subtitle %}information {% endblock %}
+{% block content %}
+    <section id="content">
+        <p>&nbsp;</p>
+
+                 <!--donors-info-->
+                <div class="col-sm-6">
+
+                    <!--donation-form -->
+                    {% include 'transactions/partials/withdrawalForm.html' %}
+                    <!--/.donation-form -->
+
+
+                </div>
+                <!--/.donors-info-->
+
+
+    </section>
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        }
+    </script
+{% endblock %}

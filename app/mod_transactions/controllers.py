@@ -1,22 +1,74 @@
 from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
-from werkzeug.security import check_password_hash, generate_password_hash
 from app import db
 from app.mod_transactions.models import Transaction
+from app.mod_donors.models import Donor
+from app.mod_bloodtypes.models import Bloodtype
+from app.mod_transactions.forms import DonationForm, WithdrawalForm
 
 mod_transactions = Blueprint('transactions', __name__, url_prefix='/transactions')
 
-# @mod_auth.route('/login/', methods=['GET', 'POST'])
-# class TransactionsController:
-#
-#     def record(self, donor_id, transaction_type, milliliters, bloodtype_id):
-#         pass
-#         # record a blood transaction and update users blood view and bloodtypes inventory
-#
-#     def history(self, bloodtype_id=False):
-#         pass
-#         # return a transaction history (maybe paginated)
-#         # if bloodtype_id is passed as argument fetch transactions of this particular bloodtype database
-#
-#     def delete(self, id):
-#         pass
-#         # soft delete a transaction by rolling the blood to user AND inventory bloodtypes database
+@mod_transactions.route('/donate/<int:id>', methods=['GET', 'POST'])
+def donate(id):
+    donor = Donor.query.get_or_404(id)
+    form = DonationForm()
+
+    if  form.validate_on_submit():
+        new_transaction = Transaction(
+            donor_id=donor.id,
+            transaction_type='D',
+            bloodtype_id=donor.bloodtype_id,
+            milliliters=form.milliliters.data
+        )
+
+        # add transaction to database
+        db.session.add(new_transaction)
+        db.session.commit()
+
+        # add donated amount to donors info
+        donor.donate(form.milliliters.data)
+
+        # increase bloodtypes inventory value
+        bloodtype = Bloodtype.query.filter_by(id=donor.bloodtype_id).first()
+        bloodtype.increase(form.milliliters.data)
+
+        flash(u'You have successfully donated {} milliliters'.format(form.milliliters.data))
+        return redirect(url_for('donors.view', id=donor.id))
+    return render_template(
+        'transactions/donate.html',
+        donor=donor,
+        form=form,
+        title=u"Donation Form Donor:{} {}".format(donor.first_name, donor.last_name)
+    )
+
+
+@mod_transactions.route('/withdraw/<int:id>', methods=['GET', 'POST'])
+def withdraw(id):
+    donor = Donor.query.get_or_404(id)
+    form = WithdrawalForm()
+
+    if form.validate_on_submit():
+        new_transaction = Transaction(
+            donor_id=donor.id,
+            transaction_type='W',
+            bloodtype_id=form.bloodtype.data,
+            milliliters=form.milliliters.data
+        )
+
+        # add transaction to database
+        db.session.add(new_transaction)
+        db.session.commit()
+
+        # add withdrawn amount to donors info
+        donor.withdraw(form.milliliters.data)
+
+        # decreate bloodtypes inventory value
+        bloodtype = Bloodtype.query.filter_by(id=donor.bloodtype_id).first()
+        bloodtype.decrease(form.milliliters.data)
+
+        flash(u'You have successfully donated {} milliliters'.format(form.milliliters.data))
+        return redirect(url_for('donors.view', id=donor.id))
+    return render_template('transactions/withdraw.html',
+                           donor=donor,
+                           form=form,
+                           title=u"Withdrawal Form Donor:{} {}".format(donor.first_name, donor.last_name)
+                           )
