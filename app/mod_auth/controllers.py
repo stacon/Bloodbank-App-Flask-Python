@@ -53,7 +53,7 @@ def register():
     return render_template("auth/register.html", form=form, title='User registration')
 
 
-@mod_auth.route('/users/edit/<id>', methods=['GET', 'POST'])
+@mod_auth.route('/users/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
 

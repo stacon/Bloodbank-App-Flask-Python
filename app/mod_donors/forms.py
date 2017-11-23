@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, SelectField, DateField
+from wtforms import SubmitField, StringField, SelectField, DateField, HiddenField, IntegerField
 from wtforms.validators import InputRequired, ValidationError
 from app.mod_donors.models import Donor
 
@@ -102,6 +102,7 @@ class RegistrationForm(FlaskForm):
         if Donor.query.filter_by(insurance_number=field.data).first():
             raise ValidationError('Insurance ID is already in use.')
 
+
 class UpdateForm(FlaskForm):
     insurance_number = StringField(
         'Insurance ID',
@@ -177,11 +178,10 @@ class UpdateForm(FlaskForm):
     )
 
     contact_number = StringField(
-        'Phone Number',
+        'Contact Number',
         [
             InputRequired(message='Please provide a zip code')
-        ],
-        render_kw={'placeholder':'Phone number (required)'}
+        ]
     )
 
     submit = SubmitField('Update')

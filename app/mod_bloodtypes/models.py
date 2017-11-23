@@ -25,4 +25,12 @@ class Bloodtype(Base):
 
     @property
     def liters(self):
-        return str("{0:.2f}".format(self.milliliters_available))
+        return str("{0:.2f}".format(self.milliliters_available/1000))
+
+    def increase(self, amount):
+        self.milliliters_available += amount
+        db.session.commit()
+
+    def decrease(self, amount):
+        self.milliliters_available -= amount
+        db.session.commit()

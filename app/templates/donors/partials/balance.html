@@ -5,13 +5,13 @@
     <!-- /.box-header -->
     <div class="box-body no-padding">
         <div class="col-sm-4">
-            <h4><strong>Donated</strong> :<br> 6320 ml</h4>
+            <h4><strong>Donated</strong> :<br> {{ donor.milliliters_donated }}</h4>
         </div>
         <div class="col-sm-4">
-            <h4><strong>Withdrawn</strong> :<br> 1820 ml</h4>
+            <h4><strong>Withdrawn</strong> :<br> {{ donor.milliliters_withdrawn }}</h4>
         </div>
         <div class="col-sm-4">
-            <h4><strong>Balance</strong> :<br> 4500 ml</h4>
+            <h4><strong>Balance</strong> :<br> {{ donor.milliliters_donated - donor.milliliters_withdrawn}}</h4>
         </div>
 
     </div>

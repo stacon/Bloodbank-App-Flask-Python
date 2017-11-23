@@ -1,4 +1,5 @@
 {% extends 'master/layout.html' %}
+{% from 'auth/partials/renderFields.html' import render_button, render_field %}
 {% block subtitle %}information {% endblock %}
 {% block content %}
     <section id="content">
@@ -22,23 +23,30 @@
                 </div>
                 <!--/.donors-info-->
 
-                <!--make-transaction-->
+                <!--actions-->
                 <div class="col-sm-6">
 
                     <!--donation-form-->
                     <div class="col-sm-12">
-                        {% include 'donors/partials/donationForm.html' %}
+                        <h1>Available Actions</h1>
+                        <a class="btn btn-block btn-success" href="{{ url_for('transactions.donate', id=donor.id) }}">
+                            Make a donation
+                        </a>
+                        <a class="btn btn-block btn-primary" href="{{ url_for('transactions.withdraw', id=donor.id) }}">
+                            Make a withdrawal
+                        </a>
+                        <a class="btn btn-block btn-warning" href="{{ url_for('donors.edit', id=donor.id) }}">
+                            Edit {{ donor.first_name }} {{ donor.last_name }} 's Information
+                        </a>
+                        <a class="btn btn-block btn-danger" href="{{ url_for('donors.delete', id=donor.id) }}">
+                            Delete {{ donor.first_name }} {{ donor.last_name }}
+                        </a>
+
                     </div>
                     <!--/.donation-form-->
 
-                    <!--withdrawal-form-->
-                    <div class="col-sm-12">
-                        {% include 'donors/partials/withdrawalForm.html' %}
-                    </div>
-                    <!--/.withdrawal-form-->
-
                 </div>
-                <!--/.make-transaction-->
+                <!--/.actions-->
             </div>
 
         </div>
@@ -67,32 +75,6 @@
                                 <tr>
                                     <td>Friday 15 December 2017</td>
                                     <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
                                 </tr>
 
                                 </tbody>

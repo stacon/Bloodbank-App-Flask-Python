@@ -46,6 +46,15 @@ class Donor(Base):
         self.contact_number = contact_number
 
 
+    def donate(self, amount):
+        self.milliliters_donated += amount
+        db.session.commit()
+
+
+    def withdraw(self, amount):
+        self.milliliters_withdrawn += amount
+        db.session.commit()
+
     @property
     def age(self):
         return str(int((date.today() - self.dob).days / 365))

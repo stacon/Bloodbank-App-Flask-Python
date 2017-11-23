@@ -3,13 +3,15 @@
         <h3 class="box-title">Withdrawal</h3>
     </div>
     <div class="box-body">
-        <form class="form-group" method="POST" prefix="withdrawalForm">
+        <form class="form-group" method="POST">
 
-            {{ render_field(withdrawalForm.milliliters) }}
+            {{ form.csrf_token }}
 
-            {{ render_field(withdrawalForm.bloodtype) }}
+            {{ render_field(form.milliliters) }}
 
-            {{ render_button(withdrawalForm.submit) }}
+            {{ render_field(form.bloodtype) }}
+
+            {{ render_button(form.submit) }}
 
         </form>
     </div>

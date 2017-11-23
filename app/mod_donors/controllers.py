@@ -1,6 +1,7 @@
-from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for,request
 from app.mod_donors.forms import RegistrationForm, UpdateForm
 from app.mod_donors.models import Donor
+from app.mod_transactions.models import Transaction
 from flask_login import login_required
 from app import db
 
@@ -12,10 +13,16 @@ def index():
     return render_template('donors/index.html', title='Donors')
 
 
-@mod_donors.route('/view')
+@mod_donors.route('/view/<int:id>', methods=['GET', 'POST'])
 @login_required
-def view():
-    return render_template('donors/view.html', title="#name's info ")
+def view(id):
+    donor = Donor.query.get_or_404(id)
+
+    return render_template(
+        'donors/view.html',
+        donor=donor,
+        title=u"{}'s information".format(donor.last_name)
+    )
 
 @mod_donors.route('/register', methods=['GET', 'POST'])
 @login_required
@@ -48,13 +55,13 @@ def register():
     # load registration template
     return render_template("donors/register.html", form=form, title='Donor registration')
 
-@mod_donors.route('/edit/<id>', methods=['GET', 'POST'])
+
+@mod_donors.route('/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
-    return render_template('donors/edit.html', title='Edit #name')
-
     donor = Donor.query.get_or_404(id)
     form =UpdateForm(obj=donor)
+
     if form.validate_on_submit():
         donor.gender = form.gender.data
         donor.bloodtype_id = form.bloodtype.data
@@ -67,7 +74,7 @@ def edit(id):
         flash('You have successfully updated user information', 'success')
 
         # redirect to donors view page
-        return redirect(url_for('donors.view'), id=id)
+        return redirect(url_for('donors.view', id=donor.id))
 
     form.insurance_number.data = donor.insurance_number
     form.first_name.data = donor.first_name
@@ -79,42 +86,19 @@ def edit(id):
     form.city.data = donor.city
     form.state.data = donor.state
     form.zip_code.data = donor.zip_code
-    form.contact_number = donor.contact_number
+    form.contact_number.data = donor.contact_number
     return render_template("donors/edit.html", form=form, donor=donor, action="Edit",
                            title=u"Edit #{} {} {}".format(donor.insurance_number, donor.first_name, donor.last_name))
 
+@mod_donors.route('/donors/delete/<int:id>')
+def delete(id):
 
-# class DonorsController:
-#
-#     def view(self,id):
-#         pass
-#         # return a view with the information of a particular donor along his blood transactions
-#
-#     def register(self):
-#         pass
-#         # return a view to register a donor
-#
-#     def create(self, data):
-#         pass
-#         # attempt to create a donor in the database and return success or error
-#
-#     def edit(self, id):
-#         pass
-#         # return a view to edit donor's data
-#
-#     def update(self, data):
-#         pass
-#         # attempt to update the donor's data based on his id, returning error or success message
-#
-#     def donate(self, id, milliliters, bloodtype_id):
-#         pass
-#         # attemp a blood deposit transaction for the given donor
-#
-#     def withdraw(self, id, milliliters, bloodtype_id):
-#         pass
-#         # attemp a blood withdraw transaction for the given donor
-#
-#     def transaction_history(self, id, transaction_type = False):
-#         pass
-#         # return a list with donors history of transactions
-#         # if transaction type is provided use it as a filter
+    donor = Donor.query.get_or_404(id)
+    try:
+        db.session.delete(donor)
+        db.session.commit()
+    except:
+        flash('Unexpected database error')
+        return redirect(url_for('donors.index'))
+    flash(u'Donor {} {} has been successfully deleted!'.format(donor.first_name, donor.last_name), 'success')
+    return redirect(url_for('donors.index'))

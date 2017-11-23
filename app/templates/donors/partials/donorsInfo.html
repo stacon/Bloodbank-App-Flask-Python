@@ -6,19 +6,19 @@
     <div class="box-body no-padding">
 
         <div class="col-sm-12">
-            <h4><strong>Full Name</strong> :<br> Winschonchin John</h4>
+            <h4><strong>Full Name</strong> :<br> {{ donor.last_name }} {{ donor.first_name }}</h4>
         </div>
         <div class="col-sm-4">
-            <h4><strong>Birthdate</strong> :<br> 16/10/1989 (28)</h4>
+            <h4><strong>Birth Date (Age)</strong> :<br> {{ donor.dob }} ({{ donor.age }})</h4>
         </div>
         <div class="col-sm-4">
-            <h4><strong>Gender</strong> :<br> Transgender ex-Female</h4>
+            <h4><strong>Gender</strong> :<br> {{ donor.gender }}</h4>
         </div>
         <div class="col-sm-4">
-            <h4><strong>Blood Type</strong> :<br> B1</h4>
+            <h4><strong>Blood Type</strong> :<br> {{ donor.bloodtype }}</h4>
         </div>
         <div class="col-sm-8">
-            <h4><strong>Adress</strong> :<br> Ipparchou 36, Athens, Attica, 11743</h4>
+            <h4><strong>Adress</strong> :<br> {{ donor.address }}, {{ donor.city }}, {{ donor.state }}, {{ donor.zip_code }}</h4>
         </div>
     </div>
     <!-- /.box-body -->
