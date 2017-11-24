@@ -106,7 +106,9 @@ def edit(id):
     return render_template("donors/edit.html", form=form, donor=donor, action="Edit",
                            title=u"Edit #{} {} {}".format(donor.insurance_number, donor.first_name, donor.last_name))
 
-@mod_donors.route('/donors/delete/<int:id>')
+
+@mod_donors.route('/delete/<int:id>')
+@login_required
 def delete(id):
 
     donor = Donor.query.get_or_404(id)

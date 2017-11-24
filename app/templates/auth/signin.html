@@ -36,3 +36,31 @@
 <!--/.login-box-->
 {% include 'master/partials/flashMessages.html' %}
 {% include 'auth/partials/loginFooter.html' %}
+
+<!--Hidden commented errors for testing -->
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}<!--
+        Errors:
+                {%- for msg in errors %}
+                    {{ msg }} -
+                {% endfor %}
+    -->{% endif %}
+{% endwith %}
+{% with success = get_flashed_messages(category_filter=["success"]) %}
+    {% if success %}<!--
+        Success:
+                {%- for msg in success %}
+                    {{ msg }}
+                {% endfor %}
+    -->{% endif %}
+{% endwith %}
+
+{% with warnings = get_flashed_messages(category_filter=["warning"]) %}
+    {% if warnings %}<!--
+        Warnings:
+                {%- for msg in warnings %}
+                    {{ msg }}
+                {% endfor %}
+    -->{% endif %}
+    {% endwith %}
+<!--./ Hidden commented errors for testing -->

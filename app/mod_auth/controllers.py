@@ -21,7 +21,7 @@ def index():
     return render_template("auth/index.html", users=users, title="Users")
 
 
-@mod_auth.route('/users/register', methods=['GET' ,'POST'])
+@mod_auth.route('/users/register', methods=['GET', 'POST'])
 @login_required
 def register():
 
@@ -102,6 +102,7 @@ def password_change(id):
         title=u"Change password for {}".format(user.username))
 
 @mod_auth.route('/users/delete/<int:id>')
+@login_required
 def delete(id):
 
     # restrict access for non admins
