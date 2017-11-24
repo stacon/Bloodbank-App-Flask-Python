@@ -51,81 +51,75 @@
                     </div>
                     <!--/.donation-form-->
 
+                    </div>
+                    <!--/.actions-->
                 </div>
-                <!--/.actions-->
+
             </div>
+            <!--/.first-row-->
 
-        </div>
-        <!--/.first-row-->
+            <!--second_row-->
+            <div class="col-sm-12">
+                <h2>Transactions History</h2>
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Recent Donation History</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding">
+                                <table class="table table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <th style="width: 80%">Date</th>
+                                        <th>Mililliters</th>
 
-        <!--second_row-->
-        <div class="col-sm-12">
-            <h2>Transactions History</h2>
-        </div>
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Recent Donation History</h3>
+                                    </tr>
+                                    {% for donation in donations %}
+                                        <tr>
+                                            <td>{{ donation.date_created.strftime('%A %d. %B %Y') }}</td>
+                                            <td>{{ donation.milliliters }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr>
-                                    <th style="width: 80%">Date</th>
-                                    <th>Mililliters</th>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Recent Withdrawal History</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding">
+                                <table class="table table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <th style="width: 80%">Date</th>
+                                        <th>Mililliters</th>
 
-                                </tr>
-                                {% for donation in donations %}
-                                <tr>
-                                <td>{{ donation.date_created.strftime('%A %d. %B %Y') }}</td>
-                                <td>{{ donation.milliliters }}</td>
-                                </tr>
-                                {% endfor %}
-
-                                </tbody>
-                            </table>
+                                    </tr>
+                                    {% for withdrawal in withdrawals %}
+                                        <tr>
+                                            <td>{{ withdrawal.date_created.strftime('%A %d. %B %Y') }}</td>
+                                            <td>{{ withdrawal.milliliters }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Recent Withdrawal History</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr>
-                                    <th style="width: 80%">Date</th>
-                                    <th>Mililliters</th>
-
-                                </tr>
-                                {% for withdrawal in withdrawals %}
-                                <tr>
-                                <td>{{ withdrawal.date_created.strftime('%A %d. %B %Y') }}</td>
-                                <td>{{ withdrawal.milliliters }}</td>
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                </div>
             </div>
-        </div>
-        <!--/.second_row-->
+            <!--/.second_row-->
 
-    </section>
-    <script>
-        $(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2()
-        }
-    </script
+        </div></section>
 {% endblock %}

@@ -12,7 +12,8 @@ class BasicTests(unittest.TestCase):
     seed_views = {
         "seed users": "/seed/users",
         "seed bloodtypes": "/seed/bloodtypes",
-        "seed donors": "/seed/donors"
+        "seed donors": "/seed/donors",
+        "seed transactions": "/seed/transactions"
     }
 
     guest_views = {
