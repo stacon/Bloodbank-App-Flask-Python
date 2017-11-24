@@ -29,18 +29,24 @@
                     <!--donation-form-->
                     <div class="col-sm-12">
                         <h1>Available Actions</h1>
+
                         <a class="btn btn-block btn-success" href="{{ url_for('transactions.donate', id=donor.id) }}">
                             Make a donation
                         </a>
+
                         <a class="btn btn-block btn-primary" href="{{ url_for('transactions.withdraw', id=donor.id) }}">
                             Make a withdrawal
                         </a>
+
                         <a class="btn btn-block btn-warning" href="{{ url_for('donors.edit', id=donor.id) }}">
                             Edit {{ donor.first_name }} {{ donor.last_name }} 's Information
                         </a>
-                        <a class="btn btn-block btn-danger" href="{{ url_for('donors.delete', id=donor.id) }}">
-                            Delete {{ donor.first_name }} {{ donor.last_name }}
-                        </a>
+
+                        <!-- Deprecated button -- >
+{#                        <a class="btn btn-block btn-danger" href="{{ url_for('donors.delete', id=donor.id) }}">   #}
+{#                            Delete {{ donor.first_name }} {{ donor.last_name }}                                   #}
+{#                        </a>                                                                                      #}
+                        <!--./Deprecated button -- >
 
                     </div>
                     <!--/.donation-form-->

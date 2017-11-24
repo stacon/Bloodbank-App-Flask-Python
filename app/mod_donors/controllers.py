@@ -107,6 +107,7 @@ def edit(id):
                            title=u"Edit #{} {} {}".format(donor.insurance_number, donor.first_name, donor.last_name))
 
 
+# This function won't be used because it uses many relationships
 @mod_donors.route('/delete/<int:id>')
 @login_required
 def delete(id):
