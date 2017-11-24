@@ -2,8 +2,8 @@
 {% from 'auth/partials/renderFields.html' import render_button, render_field %}
 {% block subtitle %}information {% endblock %}
 {% block content %}
+    <p></p>
     <section id="content">
-        <p>&nbsp;</p>
 
         <!--first-row-->
         <div class="col-md-12">
@@ -15,7 +15,6 @@
                     {% include 'transactions/partials/donationForm.html' %}
                     <!--/.donation-form -->
 
-
                 </div>
                 <!--/.donors-info-->
 
@@ -23,73 +22,5 @@
 
         </div>
         <!--/.first-row-->
-
-        <!--second_row-->
-        <div class="col-sm-6">
-            <h2>Withdraws History</h2>
-        </div>
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Recent Donation History</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Mililliters</th>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Friday 15 December 2017</td>
-                                    <td>850</td>
-
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/.second_row-->
-
     </section>
-    <script>
-        $(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2()
-        }
-    </script
 {% endblock %}
