@@ -16,7 +16,6 @@ class User(Base, UserMixin):
     username = db.Column('username', db.String(30), nullable=False, unique=True)
     password_hash = db.Column('password_hash', db.String(128), nullable=False)
     privileges_level = db.Column('privileges_level', db.Integer, nullable=False)
-    soft_deleted = db.Column('soft_deleted', db.TIMESTAMP(timezone=False), nullable=True)
 
     def __init__(self, username, password, privileges_level):
         self.username = username
