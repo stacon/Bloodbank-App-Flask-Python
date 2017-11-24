@@ -4,10 +4,12 @@ from app.mod_transactions.models import Transaction
 from app.mod_donors.models import Donor
 from app.mod_bloodtypes.models import Bloodtype
 from app.mod_transactions.forms import DonationForm, WithdrawalForm
+from flask_login import login_required
 
 mod_transactions = Blueprint('transactions', __name__, url_prefix='/transactions')
 
 @mod_transactions.route('/donate/<int:id>', methods=['GET', 'POST'])
+@login_required
 def donate(id):
     donor = Donor.query.get_or_404(id)
     form = DonationForm()
@@ -42,6 +44,7 @@ def donate(id):
 
 
 @mod_transactions.route('/withdraw/<int:id>', methods=['GET', 'POST'])
+@login_required
 def withdraw(id):
     donor = Donor.query.get_or_404(id)
     form = WithdrawalForm()

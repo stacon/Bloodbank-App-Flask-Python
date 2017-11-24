@@ -26,7 +26,7 @@ def index():
 @login_required
 def view(name):
     if valid(name):
-        bloodtype = Bloodtype.query.filter_by(name=name).first()
+        bloodtype = Bloodtype.query.filter_by(name=name).first_or_404()
         recent_donations = Transaction.query.filter_by(bloodtype_id=bloodtype.id, type='D').order_by(
             Transaction.date_created.desc()).limit(10).all()
         recent_withdrawals = Transaction.query.filter_by(bloodtype_id=bloodtype.id, type='W').order_by(
