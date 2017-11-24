@@ -3,7 +3,6 @@ from app.mod_auth.forms import LoginForm, RegistrationForm, UpdateForm, ChangePa
 from app.mod_auth.models import User
 from app import db, login_manager
 from flask_login import login_user,logout_user, login_required, current_user
-from werkzeug.security import generate_password_hash
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -101,6 +100,7 @@ def password_change(id):
         action="Edit",
         title=u"Change password for {}".format(user.username))
 
+
 @mod_auth.route('/users/delete/<int:id>')
 @login_required
 def delete(id):
@@ -119,6 +119,7 @@ def delete(id):
         return redirect(url_for('auth.index'))
     flash(u'User {} has been successfully deleted!'.format(user.username), 'success')
     return redirect(url_for('auth.index'))
+
 
 @mod_auth.route('/login', methods=['GET', 'POST'])
 def login():

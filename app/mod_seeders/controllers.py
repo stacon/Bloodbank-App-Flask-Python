@@ -7,6 +7,7 @@ from app.mod_donors.models import Donor
 from app.mod_auth.models import User
 from app.mod_transactions.models import Transaction
 from datetime import date
+from random import randint
 
 mod_seeders = Blueprint('seeders', __name__, url_prefix='/seed')
 
@@ -165,48 +166,24 @@ def donors():
 
 @mod_seeders.route('/transactions')
 def transactions():
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(2,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
-    transaction1 = Transaction(1,'D',1)
+    donors = Donor.query.all()
 
-    try:
-        db.session.add(bloodtype1)
-        db.session.add(bloodtype2)
-        db.session.add(bloodtype3)
-        db.session.add(bloodtype4)
-        db.session.add(bloodtype5)
-        db.session.add(bloodtype6)
-        db.session.add(bloodtype7)
-        db.session.add(bloodtype8)
-        db.session.commit()
-    except exc.IntegrityError:
-        flash('Failed to seed Bloodtypes in database, they probably already exist', 'error')
-        return redirect(url_for('seeders.index'))
-    flash('Bloodtypes seeded', 'success')
+    for donor in donors:
+        deposit1 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(800, 1200))
+        withdraw1 = Transaction(donor.id, 'W', randint(1, 8), randint(500, 800))
+        deposit2 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(500, 800))
+        withdraw2 = Transaction(donor.id, 'W', randint(1, 8), randint(200, 500))
+        deposit3 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(600, 1200))
+
+        try:
+            db.session.add(deposit1)
+            db.session.add(withdraw1)
+            db.session.add(deposit2)
+            db.session.add(withdraw2)
+            db.session.add(deposit3)
+            db.session.commit()
+        except exc.IntegrityError:
+            flash('Failed to seed Transactions in database, they probably already exist', 'error')
+            return redirect(url_for('seeders.index'))
+    flash('Transactions seeded', 'success')
     return redirect(url_for('seeders.index'))

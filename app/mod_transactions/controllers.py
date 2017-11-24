@@ -29,9 +29,6 @@ def donate(id):
         # add donated amount to donors info
         donor.donate(form.milliliters.data)
 
-        # increase bloodtypes inventory value
-        bloodtype = Bloodtype.query.filter_by(id=donor.bloodtype_id).first()
-        bloodtype.increase(form.milliliters.data)
 
         flash(u'You have successfully donated {} milliliters'.format(form.milliliters.data))
         return redirect(url_for('donors.view', id=donor.id))
@@ -64,9 +61,6 @@ def withdraw(id):
         # add withdrawn amount to donors info
         donor.withdraw(form.milliliters.data)
 
-        # decreate bloodtypes inventory value
-        bloodtype = Bloodtype.query.filter_by(id=form.bloodtype.data).first()
-        bloodtype.decrease(form.milliliters.data)
 
         flash(u'You have successfully donated {} milliliters'.format(form.milliliters.data))
         return redirect(url_for('donors.view', id=donor.id))

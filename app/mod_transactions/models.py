@@ -1,4 +1,5 @@
 from app import db
+from app.mod_bloodtypes.models import Bloodtype
 
 class Base(db.Model):
 
@@ -10,7 +11,7 @@ class Base(db.Model):
 
 
 class Transaction(Base):
-    __tablename__ = 'transactions'
+    __tablename__           = 'transactions'
     donor_id                = db.Column('donor_id', db.Integer, db.ForeignKey('donors.id'), nullable=False)
     type                    = db.Column('transaction_type', db.CHAR(1), nullable=False)
     bloodtype_id            = db.Column('bloodtype_id', db.Integer, db.ForeignKey('bloodtypes.id'), nullable=True)
@@ -22,6 +23,14 @@ class Transaction(Base):
         self.type = type
         self.bloodtype_id = bloodtype_id
         self.milliliters = milliliters
+
+        # Update inventory
+        if type == 'D':
+            bloodtype = Bloodtype.query.filter_by(id=bloodtype_id).first()
+            bloodtype.increase(milliliters)
+        elif type == 'W':
+            bloodtype = Bloodtype.query.filter_by(id=bloodtype_id).first()
+            bloodtype.decrease(milliliters)
 
     def __repr__(self):
         return '<ID: %r>' % (self.id)
