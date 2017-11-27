@@ -95,35 +95,39 @@ class BasicTests(unittest.TestCase):
             except AssertionError as e:
                 print('Error in ', name, " ", path, "Output: ", e)
 
-    # This is the initial database seeding reusuable function
+    # This is the initial database seeding reusable function
     def database_seeding(self):
         for name, path in BasicTests.seed_views.items():
             response = self.app.get(path, follow_redirects=True)
             self.assertIn(b'Users', response.data)
 
-    def login_as_wrong_user(self):
-        response = self.app.post(
-            '/auth/login',
-            data=dict(username='admin', password='admin'),
-            follow_redirects=True
-        )
-        self.assertIn(b'Sign in', response.data)
+    # Future Tests
 
-    def login_as_user(self):
-        response = self.app.post(
-            '/auth/login',
-            data=dict(username='tasmas', password='secret'),
-            follow_redirects=True
-        )
-        self.assertIn(b'Dashboard', response.data)
+    # def login_as_wrong_user(self):
+    #     response = self.app.post(
+    #         '/auth/login',
+    #         data=dict(username='admin', password='admin'),
+    #         follow_redirects=True
+    #     )
+    #     self.assertIn(b'Sign in', response.data)
+    #
+    # def login_as_user(self):
+    #     response = self.app.post(
+    #         '/auth/login',
+    #         data=dict(username='tasmas', password='secret'),
+    #         follow_redirects=True
+    #     )
+    #     self.assertIn(b'Dashboard', response.data)
+    #
+    # def login_as_admin(self):
+    #     response = self.app.post(
+    #         '/auth/login',
+    #         data=dict(username='stacon', password='secret'),
+    #         follow_redirects=True
+    #     )
+    #     self.assertIn(b'Dashboard', response.data)
 
-    def login_as_admin(self):
-        response = self.app.post(
-            '/auth/login',
-            data=dict(username='stacon', password='secret'),
-            follow_redirects=True
-        )
-        self.assertIn(b'Dashboard', response.data)
+    # End of Future Tests
 
 
 if __name__ == "__main__":
