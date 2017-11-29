@@ -18,19 +18,22 @@ class Transaction(Base):
     milliliters             = db.Column('milliliters', db.Integer, nullable=False)
     soft_deleted            = db.Column('soft_deleted', db.TIMESTAMP(timezone=False), nullable=True)
 
-    def __init__(self, donor_id, type, bloodtype_id, milliliters):
+    def __init__(self, donor_id, type, bloodtype_id, milliliters, donor):
         self.donor_id = donor_id
         self.type = type
         self.bloodtype_id = bloodtype_id
         self.milliliters = milliliters
+        self.donor = donor
 
         # Update inventory
         if type == 'D':
             bloodtype = Bloodtype.query.filter_by(id=bloodtype_id).first()
             bloodtype.increase(milliliters)
+            donor.donate(milliliters)
         elif type == 'W':
             bloodtype = Bloodtype.query.filter_by(id=bloodtype_id).first()
             bloodtype.decrease(milliliters)
+            donor.withdraw(milliliters)
 
     def __repr__(self):
         return '<ID: %r>' % (self.id)

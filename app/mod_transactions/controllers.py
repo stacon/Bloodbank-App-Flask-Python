@@ -19,15 +19,16 @@ def donate(id):
             donor_id=donor.id,
             type='D',
             bloodtype_id=donor.bloodtype_id,
-            milliliters=form.milliliters.data
+            milliliters=form.milliliters.data,
+            donor=donor
         )
 
         # add transaction to database
         db.session.add(new_transaction)
         db.session.commit()
 
-        # add donated amount to donors info
-        donor.donate(form.milliliters.data)
+        # # add donated amount to donors info (DEPRECATED)
+        # donor.donate(form.milliliters.data) (DEPRECATED)
 
 
         flash(u'You have successfully donated {} milliliters'.format(form.milliliters.data))
@@ -51,15 +52,16 @@ def withdraw(id):
             donor_id=donor.id,
             type='W',
             bloodtype_id=form.bloodtype.data,
-            milliliters=form.milliliters.data
+            milliliters=form.milliliters.data,
+            donor=donor
         )
 
         # add transaction to database
         db.session.add(new_transaction)
         db.session.commit()
 
-        # add withdrawn amount to donors info
-        donor.withdraw(form.milliliters.data)
+        # # add withdrawn amount to donors info (DEPRECATED)
+        # donor.withdraw(form.milliliters.data) (DEPRECATED)
 
 
         flash(u'You have successfully donated {} milliliters'.format(form.milliliters.data))

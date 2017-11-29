@@ -169,11 +169,11 @@ def transactions():
     donors = Donor.query.all()
 
     for donor in donors:
-        deposit1 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(800, 1200))
-        withdraw1 = Transaction(donor.id, 'W', randint(1, 8), randint(500, 800))
-        deposit2 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(500, 800))
-        withdraw2 = Transaction(donor.id, 'W', randint(1, 8), randint(200, 500))
-        deposit3 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(600, 1200))
+        deposit1 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(800, 1200), donor)
+        withdraw1 = Transaction(donor.id, 'W', randint(1, 8), randint(500, 800), donor)
+        deposit2 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(500, 800), donor)
+        withdraw2 = Transaction(donor.id, 'W', randint(1, 8), randint(200, 500), donor)
+        deposit3 = Transaction(donor.id, 'D', donor.bloodtype_id, randint(600, 1200), donor)
 
         try:
             db.session.add(deposit1)
