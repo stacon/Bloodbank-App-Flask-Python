@@ -10,15 +10,15 @@ This is a project created for AMC university, as an individual assignment. My go
 
 ##
 
-Packages and resources used per tier:
+## Packages and resources used per tier:
 
 ##### Database Tier 
 * MySQL 5.7.19 (MySQL AB & Oracle Corporation, 2017)
 
 ##### Application Tier
-* Γλώσσα Προγραμματισμού: Python 3.6.3 (Rossum, 2017)
-* Framework: Flask 0.12.2 (Ronacher, 2017)
-* 
+* Python 3.6.3 (Rossum, 2017)
+* Flask 0.12.2 (Ronacher, 2017)
+
 ##### Client Tier
 * HTML5 (Consortium & WHATWG, 2017)
 * CSS3 (Håkon Wium Lie, et al., 2017)
@@ -28,7 +28,7 @@ Packages and resources used per tier:
 
 ##
 
-#### Requirements :
+#### Requirements(.txt) :
 
 * Flask               ==  0.12.2
 * click               ==  6.7
